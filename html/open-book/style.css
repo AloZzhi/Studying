@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    font: 100%/1.25 Helvetica, arial, helvetica;
+    color: #fff;
+    perspective: 1000px;
+    background: linear-gradient(to bottom, #444, #999);
+}
+
+.book {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    margin-left: -150px;
+    top: 50%;
+    margin-top: -150px;
+    cursor: pointer;
+    user-select: none;
+    transform: rotateX(60deg);
+}
+
+.page {
+    width: 300px;
+    height: 300px;
+    padding: 1em;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-indent: 2em;
+}
+
+.front {
+    background-color: #d93e2b;
+
+}
+
+.back {
+    background-color: #fff;
+
+}
+
+.front-cover {
+    transform-origin: 0 50%;
+    transform: rotateY(0deg);
+
+}
+
+.p3d {
+    transform-style: preserve-3d;
+}
+
+.front-cover .back {
+    background-image: url(https://img2.baidu.com/it/u=2368431681,4265369131&fm=253&fmt=auto&app=138&f=JPEG?w=595&h=500);
+    background-size: cover;
+    transform: translateZ(3px);
+}
+
+.flip {
+    transform: rotateY(180deg);
+}
+
+.shadow,
+.pic {
+    width: 196px;
+    height: 132px;
+    position: absolute;
+    left: 60px;
+    top: 60px;
+    transform-origin: 0 100%;
+}
+
+.pic {
+    background: url(https://q4.itc.cn/q_70/images03/20240405/39ec09deda3a41d79e03897b0fdf68a0.jpeg);
+    background-size: cover;
+}
+
+.shadow {
+    background-color: rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">提交</button>
+    <script>
+        var btn = document.getElementById('btn');
+
+        function handle() {
+            //搞丢了this指向，要改回来。不应该是指向btn
+            //方法一
+            console.log('提交', this);
+        }
+
+        btn.addEventListener('click', debounce(handle))
+
+        function debounce(fn) {
+            let timer = null;
+            return function () {
+                clearTimeout(timer)
+                timer = setTimeout(() => {
+                    // this就是一个对象
+                    fn.call(this)
+                }, 1000)
+            }
+        }
+    </script>
+</body>
+
+</html>

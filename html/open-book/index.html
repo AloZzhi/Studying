@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="book p3d">
+        <!-- 右半本 -->
+        <div class="book-cover p3d">
+            <div class="page back flip"></div>
+            <div class="page front p3d">
+                <div class="shadow"></div>
+                <div class="pic"></div>
+            </div>
+        </div>
+        <!-- 左半本 -->
+        <div class="front-cover p3d">
+            <div class="page front flip p3d">
+                <p>
+                    亲爱的丁社长和铁锤：
+
+                    恭喜你们迎来人生新的旅程，结婚是爱情的圆满，是幸福的开始。愿你们携手共度人生的每一刻，相互扶持，相互理解，相互包容。
+
+                    在这个特别的日子里，愿你们的爱情如同新婚的阳光一样灿烂，如同甜蜜的蜜蜂一样温暖。愿你们的爱情，如同永恒的星辰，照耀着彼此的人生。
+
+                    愿你们的婚姻充满欢笑与快乐，百年好合，幸福美满！
+
+                    祝福语：
+                    丁社长和铁锤，祝你们于2024年5月1日结婚纪念日快乐！
+
+                    祝福你们永结同心，白头偕老！
+                </p>
+            </div>
+            <!-- 外壳 -->
+            <div class="page back"></div>
+        </div>
+    </div>
+
+    <script>
+        var hold = false
+        var frontCover = document.querySelector('.front-cover')
+        var shadow = document.querySelector('.shadow')
+        var pic = document.querySelector('.pic')
+        var clamp = function (val, min, max) {
+            return Math.max(min, Math.min(val, max))
+        }
+        //鼠标摁住事件
+        //摁住为ture
+        frontCover.onmousedown = function () {
+            hold = true
+        }
+        //摁住为false
+        window.onmouseup = function () {
+            hold = false
+        }
+        //鼠标移动事件
+        window.onmousemove = function (e) {
+            //摁住才能执行
+            if (hold == true) {
+                var angle = clamp((window.innerWidth / 2 - e.pageX + 300) / 300 * -90, -180, 0)
+
+                frontCover.style.transform = `rotateY(${angle}deg)`
+                //pic 要立起来 绕x轴旋转(angle/2)
+                pic.style.transform = `rotateX(${angle / 2}deg)`
+                //shadow 要沿x轴倾斜（angle/8）
+                shadow.style.transform = `skewX(${angle / 8}deg)`
+            }
+
+        }
+    </script>
+</body>
+
+</html>

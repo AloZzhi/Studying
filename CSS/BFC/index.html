@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            height: 500px;
+            background-color: #600c0c;
+            margin-top: 100px;
+        }
+
+        .box {
+            height: 200px;
+            background-color: #311d1d;
+            /* 天生bug */
+            /* margin重叠 父容器子容器都有margin */
+
+            margin-top: 50px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="box"></div>
+    </div>
+</body>
+
+</html>

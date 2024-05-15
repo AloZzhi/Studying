@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.music-btn {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    width: 40px;
+    height: 40px;
+    background: url(./assets/close.png);
+    background-size: cover;
+    z-index: 999;
+}
+
+.music-btn.off {
+    background-image: url(./assets/music.png);
+}
+
+.view {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background-image: linear-gradient(60deg, #f8ddd1, #faece5 73%, #fad2c0);
+}
+
+.sun {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 283px;
+    height: 283px;
+    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/sun.a3f575ae2fef2cfdae15011e6081a094.png);
+    background-size: cover;
+    transform: translate(-50%, -50%);
+}
+
+.art {
+    position: absolute;
+    top: -140px;
+    right: 0;
+    width: 375px;
+    height: 667px;
+    transform: scale(0.5);
+    transform-origin: top right;
+}
+
+.swing {
+    position: absolute;
+    left: 226px;
+    top: -180px;
+    width: 478px;
+    height: 1038px;
+    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/swing.88545d6c8e1ac798465e367f8e5357ab.png);
+    transform-origin: -16% -30%;
+    animation: ani_qiuqian 6s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+
+@keyframes ani_qiuqian {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    50% {
+        transform: rotateZ(32deg);
+    }
+
+    100% {
+        transform: rotateZ(0deg);
+    }
+}
+
+.leg2 {
+    position: absolute;
+    left: 185.375px;
+    top: 958px;
+    width: 130px;
+    height: 32px;
+    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/leg2.d7bc44a91b6974450f2ccc430846c63d.png);
+    transform-origin: 91.15% 33.59%;
+    animation: ani_leg2 8s ease infinite;
+}
+
+@keyframes ani_leg2 {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    25% {
+        transform: rotateZ(-87deg);
+    }
+
+    50% {
+        transform: rotateZ(0deg);
+    }
+
+    75% {
+        transform: rotateZ(-87deg);
+    }
+
+    100% {
+        transform: rotateZ(0deg);
+    }
+}
+
+.leg2 .jiojio {
+    position: absolute;
+    width: 57px;
+    height: 44px;
+    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/leg2-part.8f70bb7fc789a70bc78c48aa7718a765.png);
+    left: -27.75px;
+    top: -10.5px;
+}
+
+.leg1 {
+    position: absolute;
+    left: 290.375px;
+    top: 955.25px;
+    width: 63px;
+    height: 130px;
+    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/leg1.b1df6a7d1a794d36fbd0e1277733e1cf.png);
+    transform-origin: 17.857% 13.365%;
+    animation: ani_leg1 8s ease infinite;
+}
+
+@keyframes ani_leg1 {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    25% {
+        transform: rotateZ(109deg);
+    }
+
+    50% {
+        transform: rotateZ(0deg);
+    }
+
+    75% {
+        transform: rotateZ(109deg);
+    }
+
+    100% {
+        transform: rotateZ(0deg);
+    }
+}
+
+.leg1 .jiojio {
+    position: absolute;
+    width: 39px;
+    height: 62px;
+    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/leg1-part.f2f17703a6af8fd2af5e0f5a9f320623.png);
+    left: 26.25px;
+    top: 102.5px;
+}
+
+.swing .neck {
+    position: absolute;
+    left: 451.125px;
+    top: 855.5px;
+    width: 51px;
+    height: 42px;
+    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/neck.07a0013beff9796ed79c2cea542e5af2.png) no-repeat;
+}
+
+/* 头 */
+.swing .neck,
+.swing .head {
+    display: block;
+    position: absolute;
+    left: 451.125px;
+    top: 855.5px;
+    width: 51px;
+    height: 42px;
+}
+
+/* 脖子 */
+.swing .neck {
+    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/neck.07a0013beff9796ed79c2cea542e5af2.png) no-repeat;
+}
+
+/* 头 */
+.swing .head {
+    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/head.90bf892023d7df0522a4b53fc07e38df.png) no-repeat;
+    animation: ani2_head 8s ease infinite;
+}
+
+/* 头发 */
+.swing .head .part {
+    background: url(https://s5.music.126.net/static_public/5c21db8d4684556c72180904/head-part.22d4381c4bd6cb1c3afd2b1bfcfe22f1.png) no-repeat;
+    left: 20px;
+    top: 2px;
+    width: 40px;
+    height: 47px;
+    position: absolute;
+}
+
+@keyframes ani2_head {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-55deg);
+    }
+
+    62.5% {
+        transform: rotate(-55deg);
+    }
+
+    87.92% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* 特殊的内容 */
+.paras {
+    bottom: 110px;
+    left: 10.67%;
+    position: absolute;
+    line-height: 1.6667;
+    letter-spacing: 1px;
+    color: #333;
+}
+
+.s-fcRed {
+    color: #df493a;
+}
+
+.z-enter .f-animLineUp {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1.2s, transform 1s;
+}
+
+.f-animLineUp {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+em,
+i {
+    font-style: normal;
+    text-align: left;
+}

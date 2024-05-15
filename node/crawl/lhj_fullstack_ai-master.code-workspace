@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "yjl_fullstack_ai-master",
+			"path": "../.."
+		},
+		{
+			"name": "node",
+			"path": ".."
+		}
+	],
+	"settings": {}
+}
