@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">提交</button>
+    <script>
+        var btn = document.getElementById('btn');
+        //不行,点击几次就有几次计时函数
+        // btn.addEventListener('click', () => {
+        //     //ajax请求
+        //     setTimeout(() => {
+        //         console.log('提交');
+        //     }, 1000)
+        // })
+
+
+        function handle() {
+            //ajax请求
+            //addEventListener决定handle的执行，所以addEventListener干扰了this，让this不指向全局，而是指向btn；但是是计时器函数执行的fn函数，计时器函数的this是指向window，所以ajax请求的this指向window。
+            console.log('提交', this);
+        }
+        //点击一下就执行一次返回函数
+        btn.addEventListener('click', debounce(handle))
+        //防抖函数
+        function debounce(fn) {
+            let timer = null;
+            //这是一个闭包
+            return function () {
+                //如果第二次的时间没到一秒就销毁上一次的计时器
+                clearTimeout(timer)
+                timer = setTimeout(fn, 1000)
+            }
+        }
+
+
+        //一开始addEventListener和debounce一起执行
+        //然后等待点击事件触发,执行debounce返回的函数
+        //然后执行debounce返回的函数,执行了handle
+        //然后执行handle,执行了ajax请求
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nlp之图片识别，两种语言</title>
+    <style>
+        .container {
+            margin: 40px auto;
+            width: max(50vw, 400px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .custom-file-upload {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 10px;
+            border: 2px solid black;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+
+        #file-upload {
+            display: none;
+        }
+
+        #image-container {
+            width: 100%;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        #image-container>img {
+            width: 100%;
+        }
+
+        .bounding-box {
+            position: absolute;
+            box-sizing: border-box;
+        }
+
+        .bounding-box-label {
+            position: absolute;
+            color: white;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 语义化 main就比div 更好 页面中的主体内容 -->
+    <!-- css 选择器 -->
+    <main class="container">
+        <label for="file-upload" class="custom-file-upload">
+            <!-- <input type="file" id="file-upload" accept="image/*"> -->
+            <input type="file" accept="image/*" id="file-upload">
+            上传图片
+        </label>
+        <div id="image-container"></div>
+        <p id="status"></p>
+    </main>
+
+
+    <script type="module">
+        // transformers库导入pipeline模块 npl 任务 
+        import { pipeline, env } from "https://cdn.jsdelivr.net/npm/@xenova/transformers@2.6.0"
+        // 设置当前的环境对象 不要加载本地模型，使用远程加载 transformers库
+        env.allowLocalModels = false;
+        // 通过id获取input元素
+        const fileUpload = document.getElementById('file-upload');
+        const imageContainer = document.getElementById('image-container')
+        // 文件输入框元素添加监听器 事件名称change 指定触发事件执行的函数
+        fileUpload.addEventListener('change', function (e) {
+            // 获取目标事件看看效果 只要获取的第第一张图片（只上传一张图片）
+            // console.log(e.target.files[0]);
+
+            const file = e.target.files[0];
+            // 新建一个FileReader 对象， 文件的本质是 01 序列 
+            // 图片比较大 
+            const reader = new FileReader();
+            reader.onload = function (e2) {
+                // 读完了， 加载完成
+                const image = document.createElement('img'); // 图片对象
+                console.log(e2.target.result);
+                image.src = e2.target.result;
+                //添加图片src获取图片展示到div中
+                imageContainer.appendChild(image)
+                // 启动ai任务  功能模块化，封装出去
+                detect(image)
+            }
+            reader.readAsDataURL(file)
+        })
+
+        const status = document.getElementById('status');
+        // 通过pipeline启动一个检测图片的AI任务并选择合适的模型
+        const detect = async (image) => {
+            status.textContent = "分析中...";
+            const detector = await pipeline("object-detection",
+                "Xenova/detr-resnet-50") // 适合对象检测的模型 model 实例化了detector对象
+            const output = await detector(image.src, {
+                threshold: 0.1,
+                percentage: true
+            })
+            // console.log(output);
+            output.forEach(renderBox)
+        }
+
+        function renderBox({ box, label }) {
+            console.log(box, label);
+            const { xmax, xmin, ymax, ymin } = box
+            const boxElement = document.createElement("div");
+            boxElement.className = "bounding-box"
+            Object.assign(boxElement.style, {
+                borderColor: '#123123',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                left: 100 * xmin + '%',
+                top: 100 * ymin + '%',
+                width: 100 * (xmax - xmin) + "%",
+                height: 100 * (ymax - ymin) + "%"
+            })
+
+            const labelElement = document.createElement('span');
+            labelElement.textContent = label;
+            labelElement.className = "bounding-box-label"
+            labelElement.style.backgroundColor = '#000000'
+
+            boxElement.appendChild(labelElement);
+            imageContainer.appendChild(boxElement);
+        }
+    </script>
+</body>
+
+</html>

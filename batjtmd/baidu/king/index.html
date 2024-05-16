@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>talk in js</title>
+</head>
+
+<body>
+    <script>
+        // 国王 招聘1k只鸭子组成合唱团  嘎嘎嘎的叫，
+        //数组也是对象 声明一个choir合唱团对象
+        // const 常量
+        // 赋值语句
+        // js是弱类型语言 不用和Java一样声明类型
+        const choir = []; // 合唱团
+
+        //duck对象字面量
+        const duck = {
+            duckSing: function() {
+                console.log('嘎嘎嘎');
+            }
+
+        }
+
+        // 学外语
+        const chicken = {
+
+            duckSing: function() {
+                console.log('嘎嘎嘎');
+            }
+        }
+
+        //let  变量
+        // for (let i = 0; i < 1000; i++) {
+        //     choir.push(duck);
+        // }
+
+        // 封装
+        // 加入合唱团，是有个流程的
+        function joinChoir(animal) {
+            if (animal && typeof animal.duckSing == 'function') {
+                choir.push(animal);
+            }
+            console.log('恭喜加入合唱团');
+        }
+        // for (let i = 0; i < 1000; i++) {
+        //     joinChoir(duck);
+        // }
+
+        // 只有999只鸭子
+        for (let i = 0; i < 999; i++) {
+            joinChoir(duck);
+        }
+        joinChoir(chicken);
+        console.log('合唱团已有' + choir.length + '位成员');
+        if (choir.length === 1000) {
+            console.log('报告国王，合唱团招聘完成');
+
+
+        }
+    </script>
+</body>
+
+</html>
