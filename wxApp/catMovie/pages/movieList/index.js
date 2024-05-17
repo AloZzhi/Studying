@@ -5,9 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    title: ['热映', '影院', '待映'],
+    titleIndex: 1,
   },
 
+  changeTab(e) {
+    console.log(e.target.dataset.index);
+    //修改数据源titleIndex 为 e.target.dataset.index
+    this.setData({
+      titleIndex: e.target.dataset.index
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

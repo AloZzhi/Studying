@@ -1,1 +1,17 @@
 /* pages/movieList/index.wxss */
+.header {
+  text-align: center;
+  font-size: 20px;
+}
+
+.title {
+  margin: 0 10px;
+  font-weight: 300;
+  display: inline;
+}
+
+.active {
+  font-weight: 400;
+  color: red;
+
+}

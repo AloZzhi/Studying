@@ -1,2 +1,5 @@
-<!--pages/movieList/index.wxml-->
-<text>pages/movieList/index.wxml</text>
+<view class="container">
+  <view class="header">
+    <text class="title {{titleIndex == index ? 'active' : ''}}" wx:for="{{title}}" bindtap="changeTab" data-index="{{index}}">{{item}}</text>
+  </view>
+</view>
