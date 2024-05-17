@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/movieList/index",
+    "pages/home/index",
+    "pages/mine/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "猫眼电影",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#d81e06",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/home/index",
+        "iconPath": "img/home.png",
+        "selectedIconPath": "img/home-active.png"
+      },
+      {
+        "text": "电影",
+        "pagePath": "pages/movieList/index",
+        "iconPath": "img/movie.png",
+        "selectedIconPath": "img/movie-active.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/mine/index",
+        "iconPath": "img/mine.png",
+        "selectedIconPath": "img/mine-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

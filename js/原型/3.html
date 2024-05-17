@@ -1,0 +1,17 @@
+<script>
+    function Person() {
+    }
+    let p = new Person();
+
+    console.log(p);
+    if (p.__proto__ === Person.prototype) {
+        console.log(true);
+    }
+    if (Person.prototype.__proto__ === Object.prototype) {
+        console.log(true);
+    }
+    if (Object.prototype.__proto__ === null) {
+        console.log(true);
+    }
+
+</script>
