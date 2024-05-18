@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网易云音乐</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="login">
+    <h2 class="title">网易云音乐</h2>
+    <div class="logo"></div>
+    <div class="login-wrapper">
+      <div class="login-container">
+        <label for="username" class="label">账号</label>
+        <input type="text" id="username" placeholder="输入手机号" class="input">
+      </div>
+      <div class="login-container">
+        <label for="password" class="label">密码</label>
+        <input type="password" id="password" placeholder="输入密码" class="input">
+      </div>
+    </div>
+    <div class="login-button">
+      <button type="submit" onclick="login()">登录</button>
+    </div>
+
+    <div id="login-success" class="login-success" style="display: none;">
+      <img src="ok.png" alt="登录成功！">
+    </div>
+
+  </div>
+
+  </div>
+
+  <script>
+    function login() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      // 发送登录请求
+      fetch('http://192.168.1.83:3000/login?username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password))
+
+        .then((res) => {
+          //console.log(res); //得到响应体
+          return res.json() //响应体格式化为json
+        })
+        .then((data) => {
+          console.log(data);
+          if (data.msg === '登录成功') {//或者判断是否code==='0'
+            var loginSuccess = document.getElementById('login-success');
+            loginSuccess.style.display = 'block';
+          }
+        })
+    }
+  </script>
+</body>
+
+</html>

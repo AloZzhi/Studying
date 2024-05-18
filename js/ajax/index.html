@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <button id="btn">获取电影列表</button>
+  <ul id="list">
+
+  </ul>
+
+  <script>
+    let btn = document.getElementById('btn')
+    let ul = document.getElementById('list')
+    btn.addEventListener('click', () => {
+      //朝一个接口发请求，获取数据到页面上
+      let xhr = new XMLHttpRequest();//创建一个Ajax实例
+      xhr.open('GET', 'https://mock.mengxuegu.com/mock/65a91543c4cd67421b34c898/movie/movieList#!method=get', true)//配置发送的参数
+      xhr.send()
+      xhr.onreadystatechange = () => {//监听请求的过程
+        if (xhr.readyState == 4 && xhr.status == 200) {//拿到了后端返回的数据
+          //console.log(JSON.parse(xhr.responseText));
+          //展示在页面上
+          const movieList = JSON.parse(xhr.responseText).movieList
+          console.log(movieList);
+
+          for (let i = 0; i < movieList.length; i++) {
+            //movieList
+            const li = document.createElement('li');
+            li.innerText = movieList[i].nm + '--' + movieList[i].star
+            ul.appendChild(li);//添加子标签/子节点
+          }
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+body {
+  background-color: #c63535;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #ffffff;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-top: 20px;
+  font-size: 25px;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  background-image: url(./music.png);
+  background-size: cover;
+  margin-top: 20px;
+}
+
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.login-container label {
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  background-color: transparent;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #ffffff;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  width: 250px;
+  color: #ffffff;
+}
+
+.login-button {
+  margin-top: 20px;
+}
+
+.login-button button {
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: #c63535;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 250px;
+}
+
+.login-button button:hover {
+  background-color: #eaeaea;
+}
+
+.label {
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+.input[type="text"],
+.input[type="password"] {
+  background-color: transparent;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #ffffff;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  width: 250px;
+  color: #ffffff;
+}
+
+.login-success {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  /* 可选：添加半透明背景遮罩 */
+}
+
+.login-success img {
+  display: block;
+}
