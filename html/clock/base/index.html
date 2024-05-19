@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!--!回车 -->
 <html lang="en">
 
 <head>
@@ -6,9 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    #app {
+        width: 200px;
+        /* w200回车 */
+        height: 200px;
+        background-color: #417acb;
+        position: relative;
+        /* 相对定位 */
+        /* 蓝块最右边 */
+    }
+
+    .box {
+        width: 50px;
+        height: 50px;
+        background-color: #da7720ef;
+        /* position: absolute; */
+        /* 绝对定位 */
+        /* right: 0; */
+        /* 屏幕最右边 */
+        /* bottom: 0; */
+        /*蓝块右下角 */
+
+        /* position: relative;
+        left: 150px;
+        top: 150px; */
+
+        position: fixed;
+        right: 0;
+    }
+</style>
 
 <body>
-
+    <div id="app" class="app">
+        <div class="box"></div>
+        <!-- 子容器 -->
+    </div><!--app回车 取名的两种方式 id class -->
 </body>
 
 </html>

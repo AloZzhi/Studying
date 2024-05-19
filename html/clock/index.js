@@ -29,4 +29,3 @@ function setTime() {
 setTime()
 // 定时器
 setInterval(setTime, 1000)
-
