@@ -6,11 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
         #wrap {
             width: 100px;
             height: 100px;
@@ -18,45 +13,21 @@
             /* margin-left: 500px; */
             /* position: absolute;
             left: 500px; */
-            /* transform: translate(500px, 100px); */
-            /* transform: rotate(10deg); */
-            /* transform: skewX(); */
-            /* transform: scale(2); */
-            animation: scale 3s linear infinite;
+            /* transform: translate(500px,50px); */
+            /* transform: rotateY(180deg); */
+            /* transform: skewY(10deg); 延x方向倾斜*/
+            /* transform: scale(2);放大两倍 */
 
+            animation: name duration timing-function delay iteration-count direction fill-mode;
+            动画 ： 名称 时间间隔 动画时间函数 延迟 实现次数 （） 模式
         }
 
-        @keyframes scale {
-            0% {
-                transform: scale(1);
-            }
-
-            25% {
-                transform: scale(0.5);
-            }
-
-            50% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(2);
-            }
-
-            50% {
-                transform: scale(1);
-            }
-        }
+        @keyframes scal {}
     </style>
 </head>
 
 <body>
-    <div id="wrap">
-
-    </div>
-
-
-
+    <div id="wrap"></div>
 </body>
 
 </html>
