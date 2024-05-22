@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      height: 200px;
+      display: flex;
+    }
+
+    .left,
+    .right {
+      width: 200px;
+      background-color: #4aa973;
+      flex: 1;
+      /* flex-shrink: 0;父容器不够时，子容器缩小 */
+      /* flex-grow: 1;放大 */
+      order: 2;
+    }
+
+    .content {
+      width: 200px;
+      background-color: #ee6719;
+      /* flex-shrink: 0;子容器缩小 */
+      /* flex-grow: 1;父容器条件允许时，放大 */
+      flex: 1;
+      order: 1;
+    }
+
+    .left {
+      order: 0;
+    }
+
+    .right {
+      order: 2;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="page">
+    <div class="left">广告位</div>
+    <div class="content">主题内容</div>
+    <div class="right">广告位</div>
+  </div>
+</body>
+
+</html>

@@ -1,14 +1,12 @@
-// let a = 1
-// let b = a
-// a = 2
-// console.log(b);//1
+let person = {
+  name: 'John',
+};
 
-// let obj = {
-//   age: 18
-// }
-// let obj2 = obj
-// obj.age = 20
-// console.log(obj2.age);//20
+// 使用 Object.create() 进行浅拷贝
+let shallowCopy = Object.create(person);
 
-console.log(a)
-var a = 123;//不会报错
+// 修改浅拷贝对象的属性
+person.name = 'Andy';
+
+// 输出原始对象和浅拷贝对象
+console.log(shallowCopy.name);//name为Andy
