@@ -1,9 +1,9 @@
 const user = {
   name: {
-    firstName: '牛',
-    latName: '蜗'
+    firstName: 'Alo',
+    lastName: '365'
   },
-  age: 18
+  age: 19
 }
 
 function deep(obj) {

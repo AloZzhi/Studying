@@ -9,7 +9,6 @@ let obj = {
   c: null,
   d: Symbol(1),
   f: function () {
-
   }
 }
 
