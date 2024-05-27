@@ -20,17 +20,24 @@ function ListNode(val) {
   this.next = null
 }
 
-// const node = new ListNode(1)
-// const node2 = new ListNode(2)
+const node = new ListNode(1)
+const node2 = new ListNode(2)
+const node3 = new ListNode(3)
+const node4 = new ListNode(4)
+const node5 = new ListNode(5)
+
+
+const node6 = new ListNode(6)
+node6.next = node4
+node3.next = node6
 // //植入链表
-// node.next = node2
+node.next = node2
 
 // const node3 = new ListNode(3)
-// node3.next = node2
-// node.next = node3
+node3.next = node2
+node.next = node3
 
-
-//移除节点
+移除节点
 
 // const node = new ListNode(1)
 // const node2 = new ListNode(2)

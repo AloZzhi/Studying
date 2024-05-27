@@ -11,10 +11,10 @@ html {
 
 body {
     height: 100%;
-    font: 100%/1.25 Helvetica, arial, helvetica;
-    color: #fff;
+    font: 90%/1.25 Helvetica, arial, helvetica;
+    color: rgb(28, 172, 152);
     perspective: 1000px;
-    background: linear-gradient(to bottom, #444, #999);
+    background: linear-gradient(to bottom, rgb(255, 189, 200), rgb(225, 69, 95));
 }
 
 .book {
@@ -27,7 +27,7 @@ body {
     margin-top: -150px;
     cursor: pointer;
     user-select: none;
-    transform: rotateX(60deg);
+    transform: rotateX(55deg);
 }
 
 .page {
@@ -41,7 +41,7 @@ body {
 }
 
 .front {
-    background-color: #d93e2b;
+    background-color: #cad5f3;
 
 }
 
@@ -61,8 +61,8 @@ body {
 }
 
 .front-cover .back {
-    background-image: url(https://img2.baidu.com/it/u=2368431681,4265369131&fm=253&fmt=auto&app=138&f=JPEG?w=595&h=500);
-    background-size: cover;
+    background-image: url(https://n.sinaimg.cn/sinakd20112/600/w1920h1080/20220510/c74b-bc4963bedeb3a0e741c23777bcb37dec.jpg);
+    background-size: 100% 100%;
     transform: translateZ(3px);
 }
 
@@ -81,10 +81,11 @@ body {
 }
 
 .pic {
-    background: url(https://q4.itc.cn/q_70/images03/20240405/39ec09deda3a41d79e03897b0fdf68a0.jpeg);
-    background-size: cover;
+    background: url(https://n.sinaimg.cn/sinakd20122/650/w1440h810/20220514/e121-1761df8076f188e6239eeedc2378b482.jpg);
+    background-size: 100% 100%;
 }
 
+
 .shadow {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(152, 134, 15, 0.5);
 }

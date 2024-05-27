@@ -13,16 +13,39 @@
             /* margin-left: 500px; */
             /* position: absolute;
             left: 500px; */
-            /* transform: translate(500px,50px); */
-            /* transform: rotateY(180deg); */
-            /* transform: skewY(10deg); 延x方向倾斜*/
-            /* transform: scale(2);放大两倍 */
+            /* transform: translate(100px, 50px) */
+            /* transform: rotate(45deg); */
+            /* transform: skewX(10deg); 延x方向倾斜*/
+            /* transform: skew(30deg, 10deg) */
+            /* transform: scale(5); */
 
-            animation: name duration timing-function delay iteration-count direction fill-mode;
-            动画 ： 名称 时间间隔 动画时间函数 延迟 实现次数 （） 模式
+            /* animation: name duration timing-function delay iteration-count direction fill-mode;
+            动画 ： 名称 时间间隔 动画时间函数 延迟 实现次数 （） 模式 */
+
+            /* animation: cartoon 3s linear infinite; */
         }
 
-        @keyframes scal {}
+        @keyframes cartoon {
+            0% {
+                transform: cartoon(1);
+            }
+
+            25% {
+                transform: scale(0.5);
+            }
+
+            50% {
+                transform: cartoon(1);
+            }
+
+            75% {
+                transform: cartoon(2);
+            }
+
+            100% {
+                transform: cartoon(1);
+            }
+        }
     </style>
 </head>
 

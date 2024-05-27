@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
     <div class="book p3d">
-        <!-- 右半本 -->
+        <!-- 先右后左 -->
         <div class="book-cover p3d">
             <div class="page back flip"></div>
             <div class="page front p3d">
@@ -18,40 +19,41 @@
                 <div class="pic"></div>
             </div>
         </div>
-        <!-- 左半本 -->
+
         <div class="front-cover p3d">
             <div class="page front flip p3d">
                 <p>
-                    亲爱的丁社长和铁锤：
-
-                    恭喜你们迎来人生新的旅程，结婚是爱情的圆满，是幸福的开始。愿你们携手共度人生的每一刻，相互扶持，相互理解，相互包容。
-
-                    在这个特别的日子里，愿你们的爱情如同新婚的阳光一样灿烂，如同甜蜜的蜜蜂一样温暖。愿你们的爱情，如同永恒的星辰，照耀着彼此的人生。
-
-                    愿你们的婚姻充满欢笑与快乐，百年好合，幸福美满！
-
-                    祝福语：
-                    丁社长和铁锤，祝你们于2024年5月1日结婚纪念日快乐！
-
-                    祝福你们永结同心，白头偕老！
+                    妈咪请你放心，我过得很好!今天的泡面非常好吃，
+                    今天的泡面和前二十天的价格是一样的值得高兴的是今天的份量要多一些，
+                    瓦达西只差一点就可以吃饱了。本来我是想要加一根火腿肠的，
+                    但是我知道我只是个普通人家的孩子，这样做过于奢侈。
+                    哦，对了!最值得高兴的是，今天的蔬菜包里有两粒牛肉粒，
+                    而且它的口感就像真的肉一样!还有泡面汤也很好喝!
+                    我都舍不得喝完，于是我在里面又加了白开水，
+                    这样就可以分给室友们了!
+                    但是她们可能觉得这份礼物过于贵重所以婉拒了我。
+                    于是我打算把剩下的汤留作晚餐。
+                    等我凑够了钱一定带回去给你尝尝，勿念。
                 </p>
             </div>
-            <!-- 外壳 -->
+
             <div class="page back"></div>
         </div>
     </div>
 
     <script>
-        var hold = false
-        var frontCover = document.querySelector('.front-cover')
-        var shadow = document.querySelector('.shadow')
-        var pic = document.querySelector('.pic')
-        var clamp = function (val, min, max) {
-            return Math.max(min, Math.min(val, max))
-        }
         //鼠标摁住事件
-        //摁住为ture
-        frontCover.onmousedown = function () {
+        //鼠标移动事件
+        var hold = false
+        var page = document.querySelector('.front-cover')
+        var pic = document.querySelector('.pic');
+        var shadow = document.querySelector('.shadow')
+
+        var clamp = function (val, min, max) {
+            return Math.max(min, Math.min(val, max))//找中间值
+        }
+
+        page.onmousedown = function () {
             hold = true
         }
         //摁住为false
@@ -64,13 +66,16 @@
             if (hold == true) {
                 var angle = clamp((window.innerWidth / 2 - e.pageX + 300) / 300 * -90, -180, 0)
 
-                frontCover.style.transform = `rotateY(${angle}deg)`
-                //pic 要立起来 绕x轴旋转(angle/2)
-                pic.style.transform = `rotateX(${angle / 2}deg)`
-                //shadow 要沿x轴倾斜（angle/8）
-                shadow.style.transform = `skewX(${angle / 8}deg)`
-            }
+                page.style.transform = `rotateY(${angle}deg)`
 
+                //pic要立起来 绕X轴旋转 angle/2
+
+                pic.style.transform = `rotateX(${angle / 2}deg)`
+
+                //shadow要倾斜 angle/8
+                shadow.style.transform = `skewX(${angle / 8}deg)`
+
+            }
         }
     </script>
 </body>
