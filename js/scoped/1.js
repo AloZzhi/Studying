@@ -1,7 +1,7 @@
-function foo(a) {
-    console.log(a + b);
-}
+// function foo(a) {
+//     console.log(a + b);
+// }
 
-var b = 2;
+// var b = 2;
 
-foo(1);
+// foo(1);
