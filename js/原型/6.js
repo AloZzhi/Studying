@@ -24,3 +24,4 @@ let son = new Son()
 //console.log((son.fortune));//{ card: 'visa' }
 //console.log((son.like));//drink
 console.log(son.say());//hahaha
+

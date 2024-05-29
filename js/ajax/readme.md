@@ -11,7 +11,7 @@ async javaScript and xml
 4-  解析完成
 
 # status
-2xx
+2xx //传输无意外
 3xx
 4xx
 5xx
