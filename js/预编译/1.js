@@ -8,7 +8,7 @@ function test() {
 }
 // 函数也是对象，也有属性
 // test.name
-// test.length
+// test.length 传入的实参的个数 
 // test.prototype
 // test.[[scope]] 作用域属性，给js引擎访问的，我们拿不到 ---隐式属性
 
