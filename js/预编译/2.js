@@ -1,8 +1,8 @@
 function a() {
     function b() {
-        b = 22;
+        b = 33;
     }
-    var a = 111;
+    var a = 4399;
     b();
     console.log(a);
 }

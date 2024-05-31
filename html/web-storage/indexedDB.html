@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button onclick="openDB()">连接数据库</button>
+  <button onclick="createDB()">新建数据库</button>
+  <button onclick="insertOneDB()">插入一条数据</button>
+  <button onclick="insertMultiDB()">插入多条数据</button>
+  <button onclick="queryDB()">查询数据</button>
+  <button onclick="updateDB()">更新数据</button>
+  <div id="table"></div>
+
+  <script>
+    const dbName = 'users'
+    const dbVersion = 1.0
+    let db = null
+
+    function openDB() {
+      const request = indexedDB.open(dbName, dbVersion)
+      request.onerror = function () {
+        console.log('无法打开数据库');
+      }
+
+      request.onupgradeneeded = function (event) {
+        db = event.target.result
+        // 创建一个表
+        const objectStore = db.createObjectStore(['sex'], { keyPath: 'id' })
+        objectStore.createIndex('title', 'title', { unique: true })
+      }
+
+      request.onsuccess = function (event) {
+        // console.log(event);
+        db = event.target.result
+        console.log(`数据库${db.name}已经开启`);
+      }
+    }
+
+    function insertOneDB() {
+      console.log(db);
+      const transaction = db.transaction(['sex'], 'readwrite')
+        .objectStore('sex')
+        .add({ id: 1, title: '男生', author: '张三', createAt: Date.now() })
+
+      transaction.onerror = function () {
+        console.log('数据写入失败');
+      }
+      transaction.onsuccess = function () {
+        console.log('数据写入成功');
+      }
+    }
+
+    function insertMultiDB() {
+      const data = [
+        { id: 2, title: '男生1', author: '李四', createAt: Date.now() },
+        { id: 3, title: '男生2', author: '王五', createAt: Date.now() },
+        { id: 4, title: '女生', author: '裴珠泫', createAt: Date.now() }
+      ]
+
+      const transaction = db.transaction('sex', 'readwrite')
+      const objectStore = transaction.objectStore('sex')
+      data.forEach((item) => {
+        const request = objectStore.add(item)
+        request.onsuccess = function () {
+          console.log('数据已添加');
+          db.close()
+        }
+      })
+    }
+
+    function queryDB() {
+      const transaction = db.transaction(['sex'], 'readonly')
+      const objectStore = transaction.objectStore('sex')
+      const index = objectStore.index('title')
+
+      const range = IDBKeyRange.only('女生')
+      const request = index.openCursor(range)
+
+      request.onsuccess = function (event) {
+        console.log(event.target.result.value);
+      }
+      // const req = objectStore.get(1)
+      // req.onerror = function () {
+      //   console.log('查找失败');
+      // }
+      // req.onsuccess = function () {
+      //   console.log(req.result);
+      // }
+
+      //拿到某些数据
+
+    }
+  </script>
+</body>
+
+</html>
