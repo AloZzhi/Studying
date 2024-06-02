@@ -15,7 +15,7 @@ function fn(a) {//a:undefined
 }
 // AO: {
 //   a: undefined-- > 1-- > function ()-- > 4399
-//   b: undefined
+//   b: undefined -->function () { }
 //   c: undefined-- > function c() { }-- > 4399
 
 // }
