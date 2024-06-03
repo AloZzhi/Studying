@@ -1,11 +1,12 @@
-function foo() {
-    function bar() {
-        var age = 18
-        console.log(myName);
-    }
-    var myName = 'Tom'
-    return bar
+function bar(params) {
+    console.log(myName);
 }
-var myName = 'Jerry'
-var fn = foo()
-fn()
+
+function foo(params) {
+    var myName = 'Tom'
+    bar();
+}
+
+var myName = 'Jerry';
+
+foo();
