@@ -1,17 +1,17 @@
 var mrXu = {
-    name: 'Mr.Xu',
-    age: 20,
-    sex: 'male',
+    name: 'Alo',
+    age: 19,
+    sex: 'female',
     say: function () {
         console.log('hello, my name is ' + this.name);
     },
     drink: function () {
-        console.log('I drink coffee');
+        console.log('I drink water');
     },
 
 }
 
-mrXu.grilFriend = 'lilei'
+mrXu.grilFriend = 'SunYiNing'
 console.log(mrXu);
 var abc = 'girlFirend'
 // 删除  delete mrXu.sex
