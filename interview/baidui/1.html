@@ -1,14 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+public class BattleshipCounter {
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+public static int countBattleships(char[][] board) {
+if (board == null || board.length == 0 || board[0].length == 0) {
+return 0;
+}
 
-<body>
+int count = 0;
+int rows = board.length;
+int cols = board[0].length;
 
-</body>
-
-</html>
+for (int i = 0; i < rows; i++) { for (int j=0; j < cols; j++) { // Check if the current cell is 'X' and is the start of
+    a new battleship if (board[i][j]=='X' && (i==0 || board[i - 1][j] !='X' ) && (j==0 || board[i][j - 1] !='X' )) {
+    count++; } } } return count; } public static void main(String[] args) { char[][] board={ {'X', '.' , '.' , 'X' },
+    {'.', '.' , '.' , 'X' }, {'.', '.' , '.' , 'X' } }; System.out.println(countBattleships(board)); // Expected output:
+    2 } }

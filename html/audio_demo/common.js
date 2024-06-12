@@ -1,26 +1,26 @@
 function playSound(e) {
-  console.log(e.keyCode, '////');
-  let keyCode = e.keyCode
-  const key = document.querySelector(`.key[data-key="${keyCode}"]`)
-  const audio = document.querySelector(`audio[data-key="${keyCode}"]`)
-  console.log(audio);
-  if (!key) return;
-  key.classList.add('playing')
-  audio.play()
-  //65-> A playing
+  const keyCode = e.keyCode;
+  // 标签的数据属性
+  const key = document.querySelector(`
+    .key[data-key="${keyCode}"]
+  `)
+  key && key.classList.add('playing');
+
+  const keys = document.querySelectorAll('.key');
+  // console.log(keys)
+  keys.forEach((key) => {
+    key.addEventListener('transitionend', function (e) {
+      if (e.propertyName != 'transform') return;
+      this.classList.remove('playing');
+    })
+  })
+
+  const audio = document.querySelector(`
+    audio[data-key="${keyCode}"]
+  `)
+
+  audio.currentTime = 0;
+  audio.play();
+
 }
 window.addEventListener('keydown', playSound)
-
-const keys = document.querySelectorAll('.key');
-function removeTransition(e) {
-  if (e.propertyName !== 'transform') return;
-  // console.log(e.target, '//////');
-  e.target.classList.remove('playing');
-}
-
-//不需要i
-//es6 可读性
-for (let key of keys) {
-  key.addEventListener('transitionend', removeTransition)
-
-}
