@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div> <!-- 添加id="app" -->
+  <template id="temp">
+    <div>
+      <h2>{{ counter }}</h2>
+      <button @click="add" class="add">+1</button>
+      <button @click="minus" class="minus">-1</button>
+    </div>
+  </template>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const app = Vue.createApp({
+      template: '#temp',
+      data() { // 注意这里的箭头函数
+        return {
+          counter: 100
+        }
+      },
+      methods: {
+        add() {
+          this.counter++
+        },
+        minus() {
+          this.counter--
+        }
+      }
+    }).mount('#app') // 修改选择器为 '#app'
+  </script>
+</body>
+
+</html>

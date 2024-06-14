@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul li {
+      list-style: none;
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    li {
+      width: 50%;
+      padding: 30px;
+      box-sizing: border-box;
+    }
+
+    li .avatar {
+      width: 100%;
+    }
+
+    li .avatar img {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <template id="list">
+    <ul>
+      <li class="item" v-for="item in singer">
+        <div class="avatar">
+          <img :src="item.avatar" alt="">
+        </div>
+        <div class="desc">
+          <div class="name">{{item.name}}</div>
+          <div class="nums">热播：{{item.songsCount}}首</div>
+        </div>
+      </li>
+    </ul>
+  </template>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    Vue.createApp({
+      template: '#list',
+      data: function () {
+        return {
+          singer: []
+        }
+      },
+      created: function () {
+        fetch('https://mock.mengxuegu.com/mock/66585c4db462b81cb3916d3e/songer/songer')
+          .then(res => res.json())
+          .then((data) => {
+            console.log(data);
+            this.singer = data.data
+          })
+      }
+
+
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
