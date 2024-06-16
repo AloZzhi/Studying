@@ -1,8 +1,8 @@
 /**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */
+* @param {number[]} nums
+* @param {number} target
+* @return {number[]}
+*/
 nums = [1, 2, 3, 8]
 target = 10
 
