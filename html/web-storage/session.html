@@ -18,7 +18,7 @@
       age: 22
     }
     document.getElementById('save').addEventListener('click', () => {
-      sessionStorage.setItem('key', user)
+      sessionStorage.setItem('userV', JSON.stringify(user))
     })
 
     document.getElementById('get').addEventListener('click', () => {
@@ -26,7 +26,7 @@
     });
 
     document.getElementById('delete').addEventListener('click', () => {
-      sessionStorage.removeItem('key')
+      sessionStorage.removeItem('userV')
     });
 
     document.getElementById('clear').addEventListener('click', () => {

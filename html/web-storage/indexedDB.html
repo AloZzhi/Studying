@@ -93,7 +93,42 @@
       // }
 
       //拿到某些数据
+    }
 
+
+    function updateDB() {
+      // 假设db是我们已经打开的数据库实例
+      const transaction = db.transaction(['sex'], 'readwrite');
+      const objectStore = transaction.objectStore('sex');
+
+      const idToUpdate = 1; // 假设我们要更新id为1的记录
+
+      // 使用get方法获取记录
+      const getRequest = objectStore.get(idToUpdate);
+
+      // 当请求完成时，我们获取到原始数据
+      getRequest.onsuccess = function (event) {
+        const originalData = event.target.result;
+
+        // 更新数据
+        originalData.author = '胡歌'; // 修改title字段
+
+        // 使用put方法保存更改后的数据
+        const putRequest = objectStore.put(originalData);
+
+        putRequest.onsuccess = function () {
+          console.log('数据更新成功');
+        };
+
+        putRequest.onerror = function () {
+          console.error('数据更新失败');
+        };
+      };
+
+      // 错误处理
+      getRequest.onerror = function () {
+        console.error('获取数据失败');
+      };
     }
   </script>
 </body>
