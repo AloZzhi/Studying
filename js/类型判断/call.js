@@ -13,6 +13,7 @@ Function.prototype.mycall = function (context) {
   if (typeof this !== 'function') {
     return new TypeError(this + 'is not a function')
   }
+  
   //this里面的this => context
   const fn = Symbol('key')
   context[fn] = this//让对象拥有该函数 {Symbol('key'):foo}
