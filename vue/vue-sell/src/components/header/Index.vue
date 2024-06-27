@@ -1,24 +1,24 @@
 <template>
   <div class="header">
     <div class="content-wrapper">
-      <div class="avater">
+      <div class="avatar">
         <img src="https://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg" alt="">
       </div>
       <div class="content">
         <div class="title">
           <span class="brand"></span>
-          <span class="name">肉蟹煲</span>
+          <span class="name">老三样</span>
         </div>
         <div class="description">
-          蜂鸟
+          {{ seller.description }}/{{ seller.deliveryTime }}送达
         </div>
-        <div class="support">
-          <!-- pic -->
-          <span class="text">在线支付折扣</span>
+        <div class="support" v-if="seller.supports" size="1">
+          <SupportIcon :type="seller.supports[0].type"></SupportIcon>
+          <span class="text">{{ seller.supports[0].description }}</span>
         </div>
       </div>
-      <div class="support-count">
-        <span class="count">5个</span>
+      <div class="support-count" v-if="seller.supports">
+        <span class="count">{{ seller.supports.length }}个</span>
         <i class="iconfont icon-xiangyoujiantou"></i>
       </div>
     </div>
@@ -29,7 +29,13 @@
 </template>
 
 <script setup>
-
+import SupportIcon from '@/components/support-icon/Index.vue'
+defineProps({
+  seller: {
+    type: Object,
+    default: () => { }
+  }
+})
 </script>
 
 <style lang="less" scoped>
@@ -46,7 +52,7 @@
     padding: 24px 12px 18px 24px;
     display: flex;
 
-    .avater {
+    .avatar {
       flex: 0 0 64px;
       margin-right: 16px;
 
