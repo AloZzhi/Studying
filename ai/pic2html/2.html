@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>文章榜</title>
+    <style>
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .article-item {
+            margin-bottom: 20px;
+        }
+
+        .article-item > div {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-item > div::before {
+            content: attr(data-rank) " ";
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+            color: white;
+            background-color: #e74c3c;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="article-list">
+    <div class="article-item" data-rank="1">
+        后端同事下班早，前端排序我...
+    </div>
+    <div class="article-item" data-rank="2">
+        差生文具多系列之 最好看...
+    </div>
+    <div class="article-item" data-rank="3">
+        一种适合H5屏幕适配方案
+    </div>
+    <div class="article-item" data-rank="4">
+        软考架构师上岸，我用了这些...
+    </div>
+    <div class="article-item" data-rank="5">
+        前端 Vue3 数据可视化图表技...
+    </div>
+    <a href="#">查看更多&gt;</a>
+</div>
+</body>
+</html>
