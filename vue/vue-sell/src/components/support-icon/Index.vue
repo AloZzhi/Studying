@@ -3,8 +3,8 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 
-import { computed } from "vue";
 const props = defineProps({
   type: {
     type: Number,
@@ -17,10 +17,10 @@ const props = defineProps({
 })
 
 const calssMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
-
 const iconCls = computed(() => {
-  return `icon-${props.size} ${calssMap[props.type]}`
+  return `icon-${props.size} ${calssMap[props.type]}`  // 'icon-1  discount'
 })
+
 </script>
 
 <style lang="less" scoped>
@@ -45,15 +45,15 @@ const iconCls = computed(() => {
   }
 
   &.special {
-    .bg-image('special')
+    .bg-image('special_1')
   }
 
   &.invoice {
-    .bg-image('invoice')
+    .bg-image('invoice_1')
   }
 
   &.guarantee {
-    .bg-image('guarantee')
+    .bg-image('guarantee_1')
   }
 }
 
