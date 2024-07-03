@@ -19,7 +19,7 @@
       </div>
       <div class="support-count" v-if="seller.supports">
         <span class="count">{{ seller.supports.length }}个</span>
-        <i class="iconfont icon-youjiantou"></i>
+        <i class="iconfont icon-xiangyoujiantou"></i>
       </div>
     </div>
     <div class="bulletin-wrapper">

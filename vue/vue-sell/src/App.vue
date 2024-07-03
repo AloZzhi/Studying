@@ -11,7 +11,9 @@
       <router-link to="/seller">商家</router-link>
     </div>
   </div>
-  <router-view></router-view>
+
+  <router-view :seller="sellerData"></router-view>
+
 </template>
 
 <script setup>
@@ -49,6 +51,7 @@ div {
       width: 100%;
       height: 100%;
       display: block;
+
       &.router-link-active {
         color: @color-red;
         border-bottom: 3px solid @color-red;

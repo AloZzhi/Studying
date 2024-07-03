@@ -34,7 +34,7 @@
 
 
       <div class="detail-close" @click.stop="hide">
-        <i class="iconfont icon-close"></i>
+        <i class="iconfont icon-guanbi"></i>
       </div>
     </div>
   </Transition>
