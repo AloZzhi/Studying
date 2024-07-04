@@ -3,6 +3,7 @@ var arr = ['a', 1, 'b', 'hello'];
 // arr.push(true)
 // // 删除头部
 // arr.shift()
+
 // // 删除数组中任意位置元素splice 从哪里开始删，删几个
 // arr.splice(1, 2)
 
