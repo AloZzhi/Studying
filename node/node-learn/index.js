@@ -9,5 +9,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log('项目已启动在3000端口!!!');
+  console.log('项目已启动在3000端口!');
 })

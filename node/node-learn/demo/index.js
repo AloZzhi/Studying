@@ -1,1 +1,4 @@
-var a, b, c = 3;
+var a = 3
+var b = 12
+var c = a + b
+console.log(c);

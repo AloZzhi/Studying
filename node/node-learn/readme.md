@@ -10,6 +10,8 @@
 4. UMD
 5. ESM
 
+# blobal
+
 # node 中的模块
 
 # npm init 初始化一个项目

@@ -2,22 +2,22 @@
 // 操作下一张图，放到上一行最矮的列下面
 
 function imgLocation(parent, content) {
-    var cparent = document.getElementById(parent);
+    var cparent = document.getElementById(parent);//parent在这里相当于'container'
 
     // 有多少张图片
-    // var ccontent = document.querySelectorAll('.box');
-    // var ccontent = document.querySelectorAll('#container .box');
+    // var ccontent = document.querySelectorAll('.box');//把类名为box全部获取，但可能别的类名也为box所以这里不采用
+    // var ccontent = document.querySelectorAll('#container .box');//取到的是container的box
     var ccontent = getChildElement(cparent, content);
     // console.log(ccontent.length);
 
     // 获取每一个box的宽度
-    var imgWidth = ccontent[0].offsetWidth;
+    var imgWidth = ccontent[0].offsetWidth;//获取容器的宽度，任何标签的自带的属性
 
     // 屏幕一行能放下几个图片  5.6 取整放5张
     var num = Math.floor(document.documentElement.clientWidth / imgWidth);
 
     //设置container的宽度
-    cparent.style.width = `%{imgWidth *num}px`;
+    cparent.style.width = `{imgWidth *num}px`;
 
     // 要操作的是哪一张？num+1，取到每一列的高度
     var BoxHeightArr = [];
@@ -45,16 +45,16 @@ function imgLocation(parent, content) {
     // console.log(BoxHeightArr);
 
 }
-
+//辅助函数getChildElement()
 function getChildElement(parent, child) {
     // 获取parent中所有的child
     var childArr = [];
     // 返回的是数组结构
-    var allChild = parent.getElementsByTagName('*');
-    // 跳出所有Child中的box
+    var allChild = parent.getElementsByTagName('*');//parent里的所有的标签
+    // 挑出所有Child中的box
     for (let i = 0; i < allChild.length; i++) {
-        if (allChild[i].className == child) {
-            childArr.push(allChild[i]);
+        if (allChild[i].className == child) {//判断类名是否含有形参child
+            childArr.push(allChild[i]);//尾部增加进去
         }
     }
     return childArr;
