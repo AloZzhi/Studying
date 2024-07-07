@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    li {
+      list-style: none;
+      font-size: 20px;
+    }
+    .item{
+      width: 200px;
+      height: 50px;
+      float: left;
+    }
+    .item:first-child{
+      background-color: rgb(138, 69, 69);
+    }
+    .item:nth-child(2){
+      background-color: rgb(67, 67, 136);
+    }
+    .item:nth-child(3){
+      background-color: rgb(66, 138, 66);
+    }
+
+    /* 清除浮动 */
+    /* ul{
+      height: 50px;
+    } */
+
+    /* .clear{
+      clear: both;
+    } */
+
+    /* ul::after{
+      content: '';
+      clear: both;
+      display: block;
+    } */
+
+    /* .clear::after{
+      content: '';
+      clear: both;
+      display: block;
+    } */
+/* 
+    ul{
+      overflow: hidden;
+    } */
+
+    /* .title{
+      clear: both;
+    } */
+  </style>
+</head>
+<body>
+  <ul>
+    <li class="item">1</li>
+    <li class="item">2</li>
+    <li class="item">3</li>
+    <!-- <div class="clear"></div> -->
+  </ul>
+
+  <div class="title">这是标题</div>
+
+</body>
+</html>
