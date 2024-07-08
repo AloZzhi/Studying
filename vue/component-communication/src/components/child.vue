@@ -7,20 +7,28 @@
 </template>
 
 <script setup>
-// import { defineProps } from 'vue';
-import { ref, watch } from 'vue';
-const list = ref(["html", "css", "js"]);
+// import { defineProps } from 'vue'
+// defineProps({
+//   list: {
+//     type: Array,
+//     default: () => []
+//   }
+// })
 
+
+import { ref, watch } from 'vue'
+const list = ref(['html', 'css', 'js'])
 const props = defineProps({
-  msg: "",
-});
-list.value.push(props.msg);
-
-watch(() => props.msg, (newVal, oidVal) => {
-  console.log(newVal, oidVal);
-  list.value.push(newVal);
-
+  msg: ''
 })
+
+watch(
+  () => props.msg,
+  (newVal, oldVal) => {
+    list.value.push(newVal)
+  }
+)
+
 </script>
 
 <style lang="css" scoped></style>
