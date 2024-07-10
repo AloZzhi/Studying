@@ -5,11 +5,8 @@
       <router-link to="/bot">BOT</router-link>|
       <router-link to="/hot">沸点</router-link>
     </nav>
-
-
     <!-- 页面 -->
     <router-view></router-view>
-
   </div>
 </template>
 
