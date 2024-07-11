@@ -30,11 +30,14 @@
         //防抖函数
         function debounce(fn) {
             let timer = null;
-            //这是一个闭包
+            
             return function () {
-                //如果第二次的时间没到一秒就销毁上一次的计时器
+               const that = this
                 clearTimeout(timer)
-                timer = setTimeout(fn, 1000)
+                timer = setTimeout(function() {
+                    // this就是一个对象
+                    fn.call(that)
+                }, 1000)
             }
         }
 

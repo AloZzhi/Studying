@@ -22,11 +22,13 @@
         function debounce(fn) {
             let timer = null;
             return function (e) {
-                console.log('标记', e);
+                // console.log('标记', e);
+                const that = this
+
                 clearTimeout(timer)
                 timer = setTimeout(() => {
                     // this就是一个对象
-                    fn.call(this)
+                    fn.call(that,e)
                 }, 1000)
             }
         }
