@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue最受欢迎的MVVM开发框架</title>
+</head>
+
+<body>
+  <span id="container">1</span>
+  <button id="btn">点击加1</button>
+
+  <script>
+
+    const oSpan = document.getElementById('container')
+    const oBtn = document.getElementById('btn')
+
+    var obj = {
+      value: 1
+    }
+    var value = 1;
+
+    oBtn.addEventListener('click', function () {
+      obj.value++
+    })
+    //监控对象   定义对象上的属性
+    Object.defineProperties(obj, "value", {
+      get: function () {
+        return value
+      }
+      ,
+      set: function(newValue){
+      value = newValue
+        console.log('点击了按钮......')
+        oSpn.innerHTML = newValue
+    }
+    })
+    // this.current ref Model url   /   /about
+    // vue template View  component :is
+    // VM {{}}
+  </script>
+</body>
+</html>

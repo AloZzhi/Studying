@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <span id="container">1</span>
+  <span class="txt">hi</span>
+  <button id="btn">点击加1</button>
+  <script>
+    //不用dom，针对数据状态业务
+    var obj = {
+      value:1,
+      text:'h1'
+    }
+    ;(function(){
+      function watch(obj,key,func){
+        console.log('监听任何要监听的数据');
+        var value = obj[key];
+        //数据拦截
+        Object.defineProperty(obj.key,{
+          get:function(){
+            return value
+          },
+          set:function(newValue){
+            value = newValue
+          }
+        })
+      }
+      this.watch = watch;
+    })()
+    //数据可以被监听
+    watch(obj,'value',function(newValue){
+      document.getElementById('container').innerHTML = newValue
+    })
+
+    document.getElementById('btn').addEventListener('click',()=>{
+      obj.value++
+    })
+  </script>
+</body>
+</html>
