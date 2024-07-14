@@ -1,16 +1,14 @@
-var a = 2
 var obj = {
-    a: 1,
-    foo: foo
+    a: 1
 }
 
-var obj2 = {
-    a: 3,
-    obj: obj
+function foo(x, y) {      /// new Function()   Function.prototype.call = function
+    console.log(this.a, x + y);
 }
 
-function foo() {
-    console.log(this.a);
-}
+// foo.call(obj, 2, 3)
 
-obj2.obj.foo()
+foo.apply(obj, [1, 2])
+
+// var bar = foo.bind(obj, 3, 4)
+// bar(2)

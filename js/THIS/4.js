@@ -1,32 +1,40 @@
-// function foo(){
-//     console.log(this.a);
+// var obj = {
+//   a: 1,
+//   foo: foo//引用
 // }
 
-// var a = 1;
-
-// foo();
-
-// var obj = {
-//     a: 1,
-//     b: function () {
-//         foo()
-//     }
+// var obj2 = {
+//   a: 2,
+//   obj: obj
 // }
 
 // function foo() {
-//     console.log(this.a);
+//   console.log(this.a);
 // }
-// var a = 2
-// obj.b()
+
+// obj2.obj.foo()
+
+
+
+
+
+// var val = 123
+// var b = 'abc'
+
+// var o = {  // 对象中的key默认就是字符串
+//   a: 1,
+//   [b]: val
+// }
+// console.log(o);
+
+
+
 var obj = {
     a: 1,
-    b: function () {
-        foo()
-    }
+    foo: foo()
 }
-
 function foo() {
     console.log(this.a);
 }
-var a = 2
-obj.b()
+
+// obj.foo()

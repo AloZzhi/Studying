@@ -1,13 +1,13 @@
 function foo() {
-    console.log(this);
+    console.log(this);//window
 }
 // this 代指某一块作用域
-// foo();
+// foo();//独立调用
 
 // var obj = {
 //     a: 1,
 //     foo: function () {
-//         console.log(this);
+//         console.log(this);//obj
 //     }
 // }
 
@@ -19,9 +19,9 @@ function bar() {
 
 
 
-function baz() {
-    bar();
-}
-baz();
+// function baz() {
+//     bar();
+// }
+// baz();
 
 
