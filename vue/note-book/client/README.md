@@ -1,35 +1,12 @@
-# client
+# 登录鉴权
 
-This template should help get you started developing with Vue 3 in Vite.
+1. 前端鉴权
+   当用户访问需要登录权限的页面地址时，前端判断本地是否存有用户信息数据，如果有，则认为是登录了的
+   ====>(路由守卫)
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
+2. 后端鉴权
+   -1. 前端输入账号输入正确的账号密码给到后端
+   -2. 后端校验账号密码合法后，用该账号信息生成一个加密的令牌（token）
+   并返回给前端保存
+   -3. 前端接下来的所有接口请求，全部要求带上这个 token 给后端
+   -4. 后端校验 token 的合法性来判断此时用户是否登录

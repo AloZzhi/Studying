@@ -42,11 +42,12 @@ const onSubmit = async (values) => {
     username: values.username,
     password: values.password
   })
+
+
   localStorage.setItem('userInfo', JSON.stringify(res.data))
+  localStorage.setItem('token', res.token)
   router.push('./noteClass')
-  // console.log(res);
-
-
+  console.log(res);
 }
 </script>
 
