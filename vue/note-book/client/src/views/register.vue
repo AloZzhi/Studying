@@ -1,12 +1,11 @@
 <template>
   <div class="login">
     <h1>注册</h1>
-    <div class="login-warpper">
+    <div class="login-wrapper">
       <div class="avatar">
-        <img
-          src="https://s1.aigei.com/src/img/gif/cf/cfc0f24c2a4648918c766b4cfccf79ba.gif?e=1735488000&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:fzp69ElHiquobbXdh5iw850MX3Q="
-          alt="">
+        <img src="https://q6.itc.cn/q_70/images03/20240601/80b789341c9b45cb8a76238650d288a5.png" alt="">
       </div>
+
       <van-form @submit="onSubmit">
         <van-cell-group inset>
           <van-field v-model="username" name="username" label="用户名" placeholder="用户名"
@@ -18,37 +17,40 @@
         </van-cell-group>
         <div style="margin: 16px;">
           <van-button round block type="primary" native-type="submit">
-            确认注册
+            注册
           </van-button>
         </div>
       </van-form>
 
     </div>
-    <p class="register" @click="() => router.push('/login')">已有账号?点击这里登录</p>
+
+    <p class="register" @click="() => router.push('/login')">已有账号？点击登录</p>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import axios from '@/api'
-import { useRouter } from 'vue-router'
-import { showSuccessToast, showFailToast } from 'vant';
-
+import { useRouter } from 'vue-router';
+import { showSuccessToast } from 'vant';
 
 const username = ref('')
 const password = ref('')
 const nickname = ref('')
+
 const router = useRouter()
 
-//注册
+// 注册
 const onSubmit = async (values) => {
+  // console.log(values);
   const res = await axios.post('/user/register', values)
   // console.log(res);
-  showSuccessToast(res.msg);
+  showSuccessToast(res.msg)
   setTimeout(() => {
     router.push('/login')
   }, 1500)
 }
+
 </script>
 
 <style lang="less" scoped>
@@ -58,6 +60,7 @@ const onSubmit = async (values) => {
   background-color: #fff;
   padding: 0 0.3rem;
   box-sizing: border-box;
+  overflow: hidden;
   position: relative;
 
   h1 {
@@ -65,17 +68,16 @@ const onSubmit = async (values) => {
     text-align: center;
     font-size: 0.48rem;
     margin-top: 1.12rem;
-
   }
 
-  .login-warpper {
+  .login-wrapper {
     width: 7.44rem;
     height: 10.77rem;
     border: 1px solid rgba(187, 187, 187, 1);
     margin: 0 auto;
     margin-top: 1.7rem;
     border-radius: 0.3rem;
-    box-shadow: 0 0 0.533rem rgba(170, 170, 170, 1);
+    box-shadow: 0 0 0.533rem 0 rgba(170, 170, 170, 1);
 
     .avatar {
       width: 2.4rem;
@@ -86,7 +88,6 @@ const onSubmit = async (values) => {
 
       img {
         width: 100%;
-
       }
     }
   }
@@ -95,7 +96,7 @@ const onSubmit = async (values) => {
     position: absolute;
     bottom: 30px;
     left: 50%;
-    transform: translate(-50%);
+    transform: translateX(-50%);
     font-size: 0.374rem;
     color: rgba(16, 16, 16, 1);
   }

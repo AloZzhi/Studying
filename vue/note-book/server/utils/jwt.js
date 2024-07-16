@@ -6,16 +6,16 @@ function sign(option) {
   })
 }
 
-
 function verify() {
-  return (ctx, next) => {
+  return async (ctx, next) => {
     let jwtToken = ctx.req.headers.authorization
     if (jwtToken) {
       // 判断 token 是否合法
       try {
         const decoded = jwt.verify(jwtToken, '666')
         if (decoded.id) { // 合法
-          next()
+          ctx.userId = decoded.id
+          await next()
         }
       } catch (e) {
         ctx.body = {
@@ -31,6 +31,7 @@ function verify() {
     }
   }
 }
+
 
 module.exports = {
   sign,

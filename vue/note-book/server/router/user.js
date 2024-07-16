@@ -2,14 +2,14 @@ const router = require('koa-router')();
 const { userLogin, userFind, userRegister } = require('../controllers/index.js')
 const jwt = require('../utils/jwt.js')
 
-router.prefix('/user') //路由前缀
+router.prefix('/user')  // 路由前缀
 
 router.post('/login', async (ctx) => {
-  //获取到前端传递的账号密码，去数据库中校验
+  // 获取到前端传递的账号密码， 
   const { username, password } = ctx.request.body
   try {
-    //去数据库中检验
-    const result = await userLogin(username, password)//await阻塞后续代码执行
+    // 去数据库中检验
+    const result = await userLogin(username, password)
     // console.log(result);
     if (result.length) {
       let data = {
@@ -17,14 +17,14 @@ router.post('/login', async (ctx) => {
         nickname: result[0].nickname,
         username: result[0].username
       }
-      //生成token
+      // 生成token
       let token = jwt.sign({
         id: result[0].id,
         username: result[0].username,
         admin: true
       })
 
-      console.log(token);
+      // console.log(token);
 
       ctx.body = {
         code: '8000',
@@ -35,7 +35,7 @@ router.post('/login', async (ctx) => {
     } else {
       ctx.body = {
         code: '8004',
-        data: error,
+        data: 'error',
         msg: '账号或密码错误'
       }
     }
@@ -43,15 +43,14 @@ router.post('/login', async (ctx) => {
     ctx.body = {
       code: '8005',
       data: error,
-      mag: '服务器异常'
+      msg: '服务器异常'
     }
   }
 })
 
-//注册
+// 注册
 router.post('/register', async (ctx) => {
   const { username, password, nickname } = ctx.request.body
-  let msg = '';
   if (!username || !password || !nickname) {
     ctx.body = {
       code: '8001',
@@ -59,20 +58,20 @@ router.post('/register', async (ctx) => {
     }
     return
   }
-  //校验账号是否存在
-  const findRes = await userFind(username)
-  console.log(findRes);
-  if (findRes.length) {//账号已存在
-    ctx.body = {
-      code: '8003',
-      data: 'error',
-      msg: '账号已存在'
-    }
-    return
-  }
 
-  //往数据库里写入数据
   try {
+    // 校验账号是否存在
+    const findRes = await userFind(username)
+    // console.log(findRes);
+    if (findRes.length) { // 账号已存在
+      ctx.body = {
+        code: '8003',
+        data: 'error',
+        msg: '账号已存在'
+      }
+      return
+    }
+    // 往数据库里面写入数据
     const registerRes = await userRegister({ username, password, nickname })
     console.log(registerRes);
     if (registerRes.affectedRows) {
@@ -91,19 +90,22 @@ router.post('/register', async (ctx) => {
   } catch (error) {
     ctx.body = {
       code: '8005',
-      data: 'error',
+      data: error,
       msg: '服务器异常'
     }
   }
+
+
 })
 
-
-//测试token
+// 测试token
 router.post('/home', jwt.verify(), (ctx) => {
   ctx.body = {
     code: '8000',
     data: '首页数据'
   }
 })
+
+
 
 module.exports = router
