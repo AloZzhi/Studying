@@ -15,11 +15,25 @@
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router'
 import { ref } from 'vue'
+import axios from '@/api';
 
-const noteDetail = ref({})
+const route = useRoute()
+const noteDetailList = ref({})
 
+async function getNoteDetial() {
+  const res = await axios.get('/findNoteDetailById', {
+    params: {
+      id: route.query.id
+    }
+  })
+  console.log(res);
+  noteDetailList.value = res.data
+}
 
+getNoteDetial()
+console.log(noteDetailList.value);
 </script>
 
 <style lang="less" scoped>

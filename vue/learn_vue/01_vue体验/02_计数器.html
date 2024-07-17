@@ -9,18 +9,26 @@
 
 <body>
   <h2 class="count">0</h2>
-  <button class="add">+1</button>
-  <button class="minus">-1</button>
-  <script>
-    const count = document.querySelector('.count')
-    const add = document.querySelector('.add')
-    const minus = document.querySelector('.minus')
+<button class="add">+1</button>
+<button class="minus">-1</button>
+<script>
+  const count = document.querySelector('.count');
+  const add = document.querySelector('.add');
+  const minus = document.querySelector('.minus');
 
-    let counter = 0
-    count.innerHTML = counter
+  let counter = 0;
+  count.innerHTML = counter;
 
-    add.addEventListener 
-  </script>
+  add.addEventListener('click', () => {
+    counter++;
+    count.innerHTML = counter;
+  });
+
+  minus.addEventListener('click', () => {
+    counter--;
+    count.innerHTML = counter;
+  });
+</script>
 </body>
 
 </html>

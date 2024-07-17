@@ -46,12 +46,20 @@ const router = createRouter({
       meta: {
         title: '日记详情'
       }
+    },
+    {
+      path: '/notePublish',
+      name: 'notePublish',
+      component: () => import('@/views/NotePublish.vue'),
+      meta: {
+        title: '日记发布'
+      }
     }
   ]
 })
 
 // 全局路由守卫
-const whitePath = ['/login', '/register', '/noteClass', '/noteList']
+const whitePath = ['/login', '/register', '/noteClass']
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title
   // console.log(to, from);

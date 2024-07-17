@@ -9,21 +9,23 @@
 </head>
 
 <body>
+  <!-- Vue 应用的挂载点 -->
   <div id="app">
-
   </div>
 
+  <!-- Vue 应用的模板 -->
   <template id="temp">
     <h2>{{message}}</h2>
     <h2>{{count*10}}</h2>
     <h2>{{getReverse()}}</h2>
-    <h2 @click="toogle">{{flag ? 'haha' :'heihei'}}</h2>
+    <h2 @click="toggle">{{flag ? 'haha' :'heihei'}}</h2>
   </template>
 
   <script>
+    // 创建一个 Vue 应用实例
     Vue.createApp({
-      template: '#temp',
-      data: function () {
+      template: '#temp',//id="temp"的 template 元素的内容作为你的应用模板
+      data: function () {//包含了 message, count, 和 flag 三个响应式属性
         return {
           message: 'hello vue',
           count: 1,
@@ -31,10 +33,10 @@
         }
       },
       methods: {
-        getReverse() {
+        getReverse() {//反转消息字符串
           return this.message.split('').reverse().join('');
         },
-        toogle() {
+        toggle() {//切换布尔标志,切换哈哈嘿嘿
           this.flag = !this.flag;
         }
       }

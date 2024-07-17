@@ -6,6 +6,23 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <h2>首页</h2>
+  <ul>
+    <!-- <li>html</li>
+    <li>css</li>
+    <li>js</li>
+    <li>vue</li> -->
+  </ul>
+  <a href="./detail.html">去详情页面</a>
+
+  <script>
+    let data = ['HTML', 'CSS', 'JS', 'VUE'] // ajax
+
+    for (let i = 0; i < data.length; i++) {
+      let li = document.createElement('li')
+      li.innerHTML = data[i]
+      document.querySelector('ul').appendChild(li)
+    }
+  </script>
 </body>
 </html>

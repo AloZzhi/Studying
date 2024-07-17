@@ -3,7 +3,7 @@
     <h1>登录</h1>
     <div class="login-wrapper">
       <div class="avatar">
-        <img src="https://q6.itc.cn/q_70/images03/20240601/80b789341c9b45cb8a76238650d288a5.png" alt="">
+        <img src="https://wx3.sinaimg.cn/large/007Badvygy1gytgbptq8yj30j60qmdmk.jpg" alt="">
       </div>
 
       <van-form @submit="onSubmit">

@@ -7,7 +7,7 @@
         </div>
 
         <div>
-          <van-icon name="edit" />
+          <van-icon name="edit" @click="goNotePublish" />
           <van-icon name="like-o" />
           <van-icon name="search" />
         </div>
@@ -48,6 +48,11 @@ const handle = (e) => {
 const goNoteList = (title) => {
   router.push({ path: '/noteList', query: { title: title } })
 }
+
+const goNotePublish = () => {
+  router.push('/notePublish')
+}
+
 </script>
 
 <style lang="less" scoped>
