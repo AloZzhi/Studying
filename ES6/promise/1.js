@@ -1,12 +1,12 @@
 function foo() {
   setTimeout(() => {
-    console.log('朴志晟');
+    console.log('foo');
   }, 1000)
 
 }
 
 function bar() {
-  console.log('罗渽民');
+  console.log('bar');
 }
 
 foo()

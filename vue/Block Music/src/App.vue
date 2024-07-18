@@ -1,11 +1,13 @@
 <template>
   <div>
-    Home
+    <router-view></router-view>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 
+const act = ref(false)
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped></style>
