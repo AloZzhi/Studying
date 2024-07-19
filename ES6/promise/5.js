@@ -7,7 +7,7 @@ function a() {
   })
 }
 function b() {
-  console.log('b id ok');
+  console.log('b is ok');
 }
 
 
