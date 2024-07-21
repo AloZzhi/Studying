@@ -9,7 +9,9 @@ function clone(obj) {
   clone.getLike = function () {
     return this.like
   }
+  clone.sex = '男'
   return clone
 }
 
-let child = xxx(parent)
+let child = clone(parent)
+console.log(child);
