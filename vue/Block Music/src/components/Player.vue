@@ -1,98 +1,76 @@
 <template>
-  <div class="player">
-    <AlbumArt :art="currentTrack.art" />
-    <div class="controls">
-      <button @click="prevTrack">Prev</button>
-      <button @click="togglePlay">{{ isPlaying ? 'Pause' : 'Play' }}</button>
-      <button @click="nextTrack">Next</button>
+  <div class="player-container">
+    <van-nav-bar
+      title="Now Playing"
+      left-text="Back"
+      left-arrow
+      @click-left="goBack"
+    />
+    <div class="player-content">
+      <van-image
+        :src="musicStore.currentTrack.image"
+        width="200"
+        height="200"
+        fit="cover"
+        class="album-art"
+      />
+      <h2 class="track-title">{{ musicStore.currentTrack.title }}</h2>
+      <p class="track-artist">{{ musicStore.currentTrack.artist }}</p>
+      <van-slider
+        v-model="musicStore.progress"
+        :max="musicStore.currentTrack.duration"
+        class="progress-bar"
+        @change="onProgressChange"
+      />
+      <div class="controls">
+        <van-button icon="prev" class="control-button" @click="musicStore.prevTrack" />
+        <van-button
+          :icon="musicStore.isPlaying ? 'pause' : 'play'"
+          class="control-button"
+          @click="musicStore.togglePlay"
+        />
+        <van-button icon="next" class="control-button" @click="musicStore.nextTrack" />
+      </div>
     </div>
-    <div class="track-info">
-      <h2>{{ currentTrack.title }}</h2>
-      <p>{{ currentTrack.artist }}</p>
-    </div>
-    <Playlist :tracks="tracks" @selectTrack="selectTrack" />
+    <van-button type="default" class="lyrics-button" @click="viewLyrics">View Lyrics</van-button>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
-import AlbumArt from './AlbumArt.vue'
-import Playlist from './Playlist.vue'
+import { useMusicStore } from '../stores/useMusicStore';
+import { useRouter } from 'vue-router';
+import { computed } from 'vue';
 
 export default {
-  components: {
-    AlbumArt,
-    Playlist
-  },
   setup() {
-    const tracks = ref([
-      { title: 'Song 1', artist: 'Artist 1', art: 'art1.jpg' },
-      { title: 'Song 2', artist: 'Artist 2', art: 'art2.jpg' },
-      { title: 'Song 3', artist: 'Artist 3', art: 'art3.jpg' }
-    ])
-    const currentTrack = ref(tracks.value[0])
-    const isPlaying = ref(false)
+    const router = useRouter();
+    const musicStore = useMusicStore();
 
-    function togglePlay() {
-      isPlaying.value = !isPlaying.value
-    }
+    const onProgressChange = (value) => {
+      musicStore.updateProgress(value);
+    };
 
-    function prevTrack() {
-      const index = tracks.value.indexOf(currentTrack.value)
-      if (index > 0) {
-        currentTrack.value = tracks.value[index - 1]
-      }
-    }
+    const viewLyrics = () => {
+      router.push('/lyrics');
+    };
 
-    function nextTrack() {
-      const index = tracks.value.indexOf(currentTrack.value)
-      if (index < tracks.value.length - 1) {
-        currentTrack.value = tracks.value[index + 1]
-      }
-    }
-
-    function selectTrack(track) {
-      currentTrack.value = track
-    }
+    const goBack = () => {
+      router.back();
+    };
 
     return {
-      tracks,
-      currentTrack,
-      isPlaying,
-      togglePlay,
-      prevTrack,
-      nextTrack,
-      selectTrack
-    }
-  }
-}
+      musicStore,
+      onProgressChange,
+      viewLyrics,
+      goBack,
+    };
+  },
+};
 </script>
 
-<style scoped>
-.player {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  background-color: #121212;
-  color: #e1e1e1;
-}
-.controls {
-  display: flex;
-  gap: 10px;
-}
-button {
-  background-color: #1db954;
-  border: none;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #1ed760;
-}
-.track-info {
-  text-align: center;
+<style>
+.lyrics-button {
+  margin-top: 20px;
+  width: 100%;
 }
 </style>
