@@ -4,7 +4,8 @@ import App from './App.vue'
 import router from './router'
 import {createPinia} from 'pinia'
 import {Tabbar,
-  TabbarItem
+  TabbarItem,
+  Form, Field, CellGroup ,NavBar,Checkbox
 } from 'vant'
 import 'vant/lib/index.css'
 
@@ -17,6 +18,11 @@ app.use(pinia)
 
 app.use(Tabbar)
 app.use(TabbarItem)
+app.use(Form);
+app.use(Field);
+app.use(CellGroup);
+app.use(NavBar);
+app.use(Checkbox);
 
 app.mount('#app')
     

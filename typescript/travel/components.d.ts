@@ -7,9 +7,17 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Dialog: typeof import('./src/components/Dialog.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TodoList: typeof import('./src/components/TodoList.vue')['default']
+    VanButton: typeof import('vant/es')['Button']
+    VanCellGroup: typeof import('vant/es')['CellGroup']
+    VanCheckbox: typeof import('vant/es')['Checkbox']
+    VanField: typeof import('vant/es')['Field']
+    VanForm: typeof import('vant/es')['Form']
+    VanNavBar: typeof import('vant/es')['NavBar']
     VanTabbar: typeof import('vant/es')['Tabbar']
     VanTabbarItem: typeof import('vant/es')['TabbarItem']
     VanTabber: typeof import('vant/es')['Tabber']
