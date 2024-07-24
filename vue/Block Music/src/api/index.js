@@ -8,6 +8,7 @@ import Lyrics from '../components/Lyrics.vue';
 const routes = [
   { path: '/', component: Home },
   { path: '/login', component: Login },
+  { path: '/register', component: Register },
   { path: '/signup', component: SignUp },
   { path: '/player', component: Player },
   { path: '/lyrics', component: Lyrics },

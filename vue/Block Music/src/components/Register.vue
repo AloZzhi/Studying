@@ -1,10 +1,10 @@
 <template>
-  <div class="login">
+  <div class="register">
     <van-form @submit="onSubmit">
       <div class="logo">
         <img src="../assets/logo.jpg" alt="">
       </div>
-      <h1>登录</h1>
+      <h1>注册</h1>
       <div class="avatar">
         <img src="https://wx3.sinaimg.cn/large/007Badvygy1gytgbptq8yj30j60qmdmk.jpg" alt="">
       </div>
@@ -13,43 +13,50 @@
             :rules="[{ required: true, message: '请填写用户名' }]" />
           <van-field v-model="password" type="password" name="password" label="密码" placeholder="密码"
             :rules="[{ required: true, message: '请填写密码' }]" />
+          <van-field v-model="confirmPassword" type="password" name="confirmPassword" label="确认密码" placeholder="确认密码"
+            :rules="[{ required: true, message: '请确认密码' }, { validator: validatePassword, message: '两次密码不一致' }]" />
         </van-cell-group>
         <div style="margin: 16px;">
           <van-button color="#a9c9c9" round block type="primary" native-type="submit">
-            登录
+            注册
           </van-button>
         </div>
       </van-form>
-      <p class="register" @click="() => router.push('/register')">新用户？点击这里注册</p>
     </div>
-   
 </template>
 
 <script>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-
 export default {
   setup() {
     const router = useRouter();
     const username = ref('');
     const password = ref('');
+    const confirmPassword = ref('');
+
+    const validatePassword = () => {
+      return password.value === confirmPassword.value;
+    };
 
     const onSubmit = () => {
-      if (username.value && password.value) {
-
-        router.push('/');
+      if (username.value && password.value && validatePassword()) {
+        // Perform registration logic here
+        // For simplicity, let's assume the registration is always successful
+        router.push('/login');
       } else {
-
-        this.$toast.fail('Please enter valid credentials');
+        // Show an error message (Van Toast can be used)
+        this.$toast.fail('请填写有效的注册信息');
       }
     };
 
     return {
       username,
       password,
+      confirmPassword,
       onSubmit,
+      validatePassword,
     };
   },
 };
@@ -58,7 +65,7 @@ export default {
 <style lang="less" scoped>
 @import "../assets/variable.less";
 
-.login {
+.register {
   width: 100vw;
   height: 100vh;
   background-color: #fff;
@@ -70,10 +77,7 @@ export default {
     img{
       width: 112px;
       top:50px;
-      
     }
-    
-    
   }
   h1 {
     height: 0.6933rem;
@@ -91,8 +95,8 @@ export default {
       img {
         width: 100%;
       }
-}
-.register {
+  }
+  .login {
     position: absolute;
     bottom: 40px;
     left: 50%;
@@ -104,13 +108,9 @@ export default {
 
 :deep(.van-cell__title.van-field__label) {
   width: 45px;
-  
- 
 }
 
 :deep(.van-cell-line-height){
     height: 80px; 
-  }
-
-
+}
 </style>
