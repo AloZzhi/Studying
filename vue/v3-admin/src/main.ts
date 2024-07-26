@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import './style.css'
+import './assets/style/common.css'
 import App from './App.vue'
 import router from './router'
 import { createPinia } from 'pinia'
@@ -9,7 +9,11 @@ import {
     ElFormItem,
     ElInput,
     ElIcon,
-    ElCheckbox
+    ElCheckbox,
+    ElAvatar,
+    ElDropdown,
+    ElDropdownMenu,
+    ElDropdownItem
 } from 'element-plus'
 import 'element-plus/dist/index.css'
 // import * as Data from './test.js'
@@ -32,4 +36,8 @@ app
     .use(ElInput)
     .use(ElIcon)
     .use(ElCheckbox)
+    .use(ElAvatar)
+    .use(ElDropdown)
+    .use(ElDropdownMenu)
+    .use(ElDropdownItem)
     .mount('#app')
