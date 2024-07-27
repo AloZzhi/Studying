@@ -14,5 +14,6 @@ function isObject() {
   }
   return false
 }
+
 let res = isObject({ a: 1 })
 console.log(res);

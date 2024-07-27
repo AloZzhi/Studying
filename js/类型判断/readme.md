@@ -25,7 +25,7 @@ Object.prototype.toString.call(123)//call显示绑定
 Object.prototype.toString(a)
 ToObject(a)
 
-#Object.prototype.toString.call(xxx)
+# Object.prototype.toString.call(xxx)
 
 xxx.toString
 

@@ -13,14 +13,14 @@ let date = new Date();//特殊类型,特殊对象
 
 //typerof()将输入的转为二进制的值 null被转为二进制时全都是0 而前三位是0的时候会被判为object
 //准
-console.log(typeof (s));//string
-console.log(typeof (n));//number
-console.log(typeof (f));//boolean
-console.log(typeof (u));//undefined
-console.log(typeof (sy));//symbol
-console.log(typeof (big));//bigint
-//另类
-console.log(typeof (nu));//object
+// console.log(typeof (s));//string
+// console.log(typeof (n));//number
+// console.log(typeof (f));//boolean
+// console.log(typeof (u));//undefined
+// console.log(typeof (sy));//symbol
+// console.log(typeof (big));//bigint
+// //另类
+// console.log(typeof (nu));//object
 
 console.log(typeof (obj));//object
 console.log(typeof (arr));//object
