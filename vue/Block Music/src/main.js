@@ -1,6 +1,9 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
+// main.js
+import 'tailwindcss/tailwind.css';
+
 import App from './App.vue'
 import router from './router'
 import '@/assets/reset.css'

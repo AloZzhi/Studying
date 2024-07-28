@@ -2,7 +2,7 @@
   <div class="search-container">
     <van-nav-bar
       title="Search"
-      left-text="Back"
+      left-text="首页"
       left-arrow
       @click-left="goBack"
     />
@@ -56,6 +56,7 @@
         </van-cell-group>
       </div>
     </div>
+    <Tabbar />
   </div>
 </template>
 
@@ -63,8 +64,10 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
+import Tabbar from '@/components/Tabbar.vue';
 
 export default {
+  components: { Tabbar },
   setup() {
     const router = useRouter();
     const query = ref('');
@@ -88,7 +91,8 @@ export default {
         recommendedSongs.value = recommendationsResponse.data;
       } catch (error) {
         console.error('Error fetching data:', error);
-        // Handle error, maybe show a message to the user
+        // Handle error, show message to the user
+        alert('Failed to fetch search results. Please try again later.');
       }
     };
 
@@ -98,7 +102,7 @@ export default {
     };
 
     const goBack = () => {
-      router.back();
+      router.push('/');
     };
 
     return {
@@ -113,8 +117,7 @@ export default {
 };
 </script>
 
-
-<style>
+<style scoped>
 .search-container {
   display: flex;
   flex-direction: column;
@@ -132,5 +135,9 @@ export default {
 
 .recommendations {
   margin-top: 20px;
+}
+
+.recommendations h3 {
+  margin-bottom: 16px;
 }
 </style>
