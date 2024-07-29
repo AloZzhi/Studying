@@ -3,7 +3,7 @@
     <!-- 顶部导航栏 -->
      
     <van-nav-bar
-      title="Spotify"
+      title="Block"
       left-text="我的"
       left-arrow
       @click-left="isShowMenu = true"
@@ -65,8 +65,7 @@
     <!-- 底部导航栏 -->
     <Tabbar />
 
-
-    <Myself class="menu" @hidden="handle" :class="{ 'show': isShowMenu }" />
+    <Myself class="myself" @hidden="handle" :class="{ 'show': isShowMenu }" />
   </div>
 </template>
 
@@ -132,6 +131,11 @@ const onTabChange = (index) => {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-origin: border-box;
+  transform: translateX(0%);
+  &.hide{
+    transform: translateX(100%);
+  }
 }
 
 .content {
@@ -163,5 +167,15 @@ h2 {
 .playlist-info {
   text-align: center;
   margin-top: 5px;
+}
+
+.myself{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform: translateX(-100%);
+  &.show{
+    transform: translateX(0%);
+  }
 }
 </style>
