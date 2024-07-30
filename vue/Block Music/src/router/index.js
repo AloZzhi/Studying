@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from '../components/Login.vue';
-import Register from '../components/Register.vue';
+import Login from '../views/Login.vue';
+import Register from '../views/Register.vue';
 import Search from '../views/Search.vue';
 import Library from '../views/Library.vue';
 import AiChat from '@/views/AiChat.vue';
@@ -15,20 +15,28 @@ const routes = [
     }
   },
   { path: '/login', component: Login },
-
-  { path: '/register', component: Register },
   {
-    path: '/aiChat', component: AiChat
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/Register.vue'),
+    meta: {
+      title: '注册'
+    }
+  },
+  {
+    path: '/aichat',
+    name: 'AiChat',
+    component: () => import('@/views/AiChat.vue'),
   },
   {
     path: '/search',
     name: 'Search',
-    component: Search,
+    component: () => import('@/views/Search.vue'),
   },
   {
     path: '/library',
     name: 'Library',
-    component: Library,
+    component: () => import('@/views/Library.vue'),
   },
 ];
 

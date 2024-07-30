@@ -29,3 +29,15 @@
 
     来自全球最大的AI社区HuggiesFace，全球的LLM都在这里发布
     transfrom.js是一个NLP机器学习库，语言翻译
+
+- html5
+    - Web Worker 启动新线程
+    - 前端线程未来会越来越复杂 VR/AR AI  3D 高性能，时间
+      单线程js解决不了的
+    - 消息机制来通信，将复杂任务交给子线程去做
+      html5 web worker
+    - new Worker(new URL('./worker.js',import,meta.url,{type:'module'}))
+    - worker 线程中不可以用户DOM对象，适合计算
+    - 通过通信机制与主线程交流
+      - addEventListener（'message',onMessageReceived）
+      

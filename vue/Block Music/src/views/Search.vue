@@ -2,9 +2,6 @@
   <div class="search-container">
     <van-nav-bar
       title="Search"
-      left-text="首页"
-      left-arrow
-      @click-left="goBack"
     />
     <div class="search-form">
       <van-search

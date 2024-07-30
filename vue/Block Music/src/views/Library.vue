@@ -2,9 +2,6 @@
   <div class="library-container">
     <van-nav-bar
       title="Library"
-      left-text="首页"
-      left-arrow
-      @click-left="goBack"
     />
     <div class="library-content">
       <h2>My Playlists</h2>

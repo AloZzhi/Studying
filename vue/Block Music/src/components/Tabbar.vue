@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-tabbar v-model:active="active" @change="handleTabChange">
+    <van-tabbar v-model:active="active" >
       <van-tabbar-item icon="home-o" to="/">Home</van-tabbar-item>
       <van-tabbar-item icon="search" to="/search">Search</van-tabbar-item>
       <van-tabbar-item icon="friends-o" to="/library">Library</van-tabbar-item>
@@ -14,10 +14,6 @@ import { ref } from 'vue';
 
 const active = ref(0);
 
-const handleTabChange = (index) => {
-  console.log('Tab changed to:', index);
-  
-};
 </script>
 
 <style lang="less" scoped>

@@ -1,15 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../components/Home.vue';
-import Login from '../components/Login.vue';
-import SignUp from '../components/SignUp.vue';
+import Home from '../views/Home.vue';
+import Login from '../views/Login.vue';
 import Player from '../components/Player.vue';
 import Lyrics from '../components/Lyrics.vue';
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/login', component: Login },
-  { path: '/register', component: Register },
-  { path: '/signup', component: SignUp },
   { path: '/player', component: Player },
   { path: '/lyrics', component: Lyrics },
 ];

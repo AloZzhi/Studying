@@ -21,37 +21,31 @@
         </div>
       </van-form>
       <p class="register" @click="() => router.push('/register')">新用户？点击这里注册</p>
+
     </div>
    
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
+import axios from '@/api'
 import { useRouter } from 'vue-router';
 
-
-export default {
-  setup() {
     const router = useRouter();
     const username = ref('');
     const password = ref('');
 
-    const onSubmit = () => {
-      if (username.value && password.value) {
+    const onSubmit = async (values) => {
+  // console.log(values);
+  const res = await axios.post('/user/login', {   // http://localhost:3000/user/login
+    username: values.username,
+    password: values.password
+  })
+  localStorage.setItem('userInfo', JSON.stringify(res.data))
+  localStorage.setItem('token', res.token)
 
-        router.push('/');
-      } else {
-
-        this.$toast.fail('Please enter valid credentials');
-      }
-    };
-
-    return {
-      username,
-      password,
-      onSubmit,
-    };
-  },
+  router.push('/')
+   
 };
 </script>
 
