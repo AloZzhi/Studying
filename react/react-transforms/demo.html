@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformers AI</title>
+</head>
+
+<body>
+    <script type="module">
+        // 从cdn加载js库，内容分发网络 js/css/image一般放在cdn
+        // 分摊服务器压力
+        import {
+            pipeline,
+            env,
+        } from "https://jsd.cdn.zzko.cn/npm/@xenova/transformers@2.6.0";
+        // 不要下载本地模型
+        env.allowLocalModule = false;
+        // 前端直接使用大模型，端模型趋势
+        let pipe = await pipeline('sentiment-analysis') // 分类 nlp任务
+        let result = await pipe('I love transformers')
+        console.log(result)
+    </script>
+</body>
+
+</html>

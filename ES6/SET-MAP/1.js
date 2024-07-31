@@ -7,7 +7,7 @@
 // s.add(2)
 // s.add(2)//{1,2}没有重复值
 
-//console.log(s);
+// console.log(s);
 
 
 
@@ -42,13 +42,12 @@ const s = new Set([1, 2, 3, 3])
 //   console.log(s[i]);//三个undefined
 // }
 
-//console.log(s.keys());
-// console.log(s.value());//取值
+// console.log(s.keys());
+// console.log(s.values());//取值
 // console.log(s.entries());//键值对
 
 // for (const item of s.entries()) {//专门用来遍历具有iterable属性的结构
 //   console.log(item);
-
 // }
 
 
