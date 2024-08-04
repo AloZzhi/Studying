@@ -2,7 +2,7 @@
   <div class="lyrics-container">
     <van-nav-bar
       title="Lyrics"
-      left-text="Back"
+      left-text="返回"
       left-arrow
       @click-left="goBack"
     />
@@ -14,31 +14,21 @@
   </div>
 </template>
 
-<script>
-import { ref, computed } from 'vue';
+<script setup>
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useMusicStore } from '../stores/useMusicStore';
 
-export default {
-  setup() {
-    const router = useRouter();
-    const musicStore = useMusicStore();
-    const currentLyricIndex = ref(0);
+const router = useRouter();
+const musicStore = useMusicStore();
+const currentLyricIndex = ref(0);
 
-    const goBack = () => {
-      router.back();
-    };
-
-    return {
-      musicStore,
-      currentLyricIndex,
-      goBack,
-    };
-  },
+const goBack = () => {
+  router.back();
 };
 </script>
 
-<style>
+<style scoped>
 .lyrics-container {
   display: flex;
   flex-direction: column;

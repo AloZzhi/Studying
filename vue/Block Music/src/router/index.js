@@ -1,24 +1,40 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from '../views/Login.vue';
-import Register from '../views/Register.vue';
-import Search from '../views/Search.vue';
-import Library from '../views/Library.vue';
-import AiChat from '@/views/AiChat.vue';
+
+// 路由组件使用动态导入
+const Home = () => import('@/views/Home.vue');
+const Player = () => import('@/components/Player.vue');
+const Lyrics = () => import('@/components/Lyrics.vue');
+const Login = () => import('@/views/Login.vue');
+const Register = () => import('@/views/Register.vue');
+const AiChat = () => import('@/views/AiChat.vue');
+const Search = () => import('@/views/Search.vue');
+const Library = () => import('@/views/Library.vue');
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/Home.vue'),
-    meta: {
-      title: '首页'
-    }
+    component: Home,
   },
-  { path: '/login', component: Login },
+  { 
+    path: '/player', 
+    name: 'Player',
+    component: Player,
+  },
+  { 
+    path: '/lyrics', 
+    name: 'Lyrics',
+    component: Lyrics,
+  },
+  { 
+    path: '/login', 
+    name: 'Login',
+    component: Login,
+  },
   {
     path: '/register',
-    name: 'register',
-    component: () => import('@/views/Register.vue'),
+    name: 'Register',
+    component: Register,
     meta: {
       title: '注册'
     }
@@ -26,17 +42,17 @@ const routes = [
   {
     path: '/aichat',
     name: 'AiChat',
-    component: () => import('@/views/AiChat.vue'),
+    component: AiChat,
   },
   {
     path: '/search',
     name: 'Search',
-    component: () => import('@/views/Search.vue'),
+    component: Search,
   },
   {
     path: '/library',
     name: 'Library',
-    component: () => import('@/views/Library.vue'),
+    component: Library,
   },
 ];
 
