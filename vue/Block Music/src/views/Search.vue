@@ -1,59 +1,33 @@
 <template>
   <div class="search-container">
-    <van-nav-bar
-      title="Search"
-    />
+    <van-nav-bar title="Search" />
     <div class="search-form">
-      <van-search
-        v-model="query"
-        placeholder="Search for songs, artists, albums..."
-        @search="onSearch"
-      />
+      <van-search v-model="query" placeholder="Search for songs, artists, albums..." @search="onSearch" />
     </div>
     <div class="results">
       <van-cell-group>
-        <van-cell
-          v-for="(song, index) in searchResults"
-          :key="index"
-          :title="song.title"
-          :label="song.artist"
-          clickable
-          @click="playSong(song)"
-        >
+        <van-cell v-for="(song, index) in searchResults" :key="index" :title="song.title" :label="song.artist" clickable
+          @click="playSong(song)">
           <template #icon>
-            <van-image
-              :src="song.image"
-              width="48"
-              height="48"
-              fit="cover"
-            />
+            <van-image :src="song.image" width="48" height="48" fit="cover" />
           </template>
         </van-cell>
       </van-cell-group>
       <div v-if="recommendedSongs.length > 0" class="recommendations">
         <h3>Recommended for You</h3>
         <van-cell-group>
-          <van-cell
-            v-for="(song, index) in recommendedSongs"
-            :key="index"
-            :title="song.title"
-            :label="song.artist"
-            clickable
-            @click="playSong(song)"
-          >
+          <van-cell v-for="(song, index) in recommendedSongs" :key="index" :title="song.title" :label="song.artist"
+            clickable @click="playSong(song)">
             <template #icon>
-              <van-image
-                :src="song.image"
-                width="48"
-                height="48"
-                fit="cover"
-              />
+              <van-image :src="song.image" width="48" height="48" fit="cover" />
             </template>
           </van-cell>
         </van-cell-group>
       </div>
     </div>
-    <Tabbar />
+
+
+    <!-- <Tabbar /> -->
   </div>
 </template>
 

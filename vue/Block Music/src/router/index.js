@@ -16,18 +16,18 @@ const routes = [
     name: 'home',
     component: Home,
   },
-  { 
-    path: '/player', 
+  {
+    path: '/player',
     name: 'Player',
     component: Player,
   },
-  { 
-    path: '/lyrics', 
+  {
+    path: '/lyrics',
     name: 'Lyrics',
     component: Lyrics,
   },
-  { 
-    path: '/login', 
+  {
+    path: '/login',
     name: 'Login',
     component: Login,
   },

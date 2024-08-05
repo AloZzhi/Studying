@@ -1,88 +1,129 @@
 <template>
-  <div class="home":class="{ 'hide': isShowMenu }">
-    <!-- 顶部导航栏 -->
-     
-    <van-nav-bar
-      title="Block"
-      left-text="我的"
-      left-arrow
-      @click-left="isShowMenu = true"
-    />
+  <div style="overflow: hidden;width: 100vw;height: 100vh;position: relative;">
+    <div class="home" :class="{ 'hide': isShowMenu }">
+      <!-- 顶部导航栏 -->
 
-    <!-- 内容部分 -->
-    <div class="content">
-      <!-- 每日推荐歌单 -->
-      <section>
-        <h2>每日推荐歌单</h2>
-        <div class="playlist-list">
-          <div class="playlist" v-for="item in dailyPlaylists" :key="item.id">
-            <van-image :src="item.picUrl" width="100" height="100" fit="cover" :alt="item.name" />
-            <div class="playlist-info">{{ item.name }}</div>
-          </div>
+      <van-nav-bar title="Block" left-text="我的" left-arrow @click-left="isShowMenu = true" />
+
+      <!-- 内容部分 -->
+      <div class="content">
+        <div class="swipe">
+          <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+            <van-swipe-item v-for="item in state.banners" :key="item.targetId">
+              <van-image :src="item.imageUrl" />
+            </van-swipe-item>
+          </van-swipe>
         </div>
-      </section>
 
-      <!-- 热门歌曲 -->
-      <section>
-        <h2>热门歌曲</h2>
-        <div class="song-list">
-          <div class="song" v-for="song in popularSongs" :key="song.id">
-            <van-image :src="song.picUrl" width="100" height="100" fit="cover" :alt="song.name" />
-            <div class="song-info">
-              <h3>{{ song.name }}</h3>
-              <p>{{ song.artist }}</p>
+
+        <!-- 每日推荐歌单 -->
+        <section>
+          <h2>每日推荐歌单</h2>
+          <div class="playlist-list">
+            <div class="playlist" v-for="item in dailyPlaylists" :key="item.id">
+              <van-image :src="item.picUrl" width="100" height="100" fit="cover" :alt="item.name" />
+              <div class="playlist-info">{{ item.name }}</div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- 最近播放 -->
-      <section>
-        <h2>最近播放</h2>
-        <div class="song-list">
-          <div class="song" v-for="song in recentPlays" :key="song.id">
-            <van-image :src="song.picUrl" width="100" height="100" fit="cover" :alt="song.name" />
-            <div class="song-info">
-              <h3>{{ song.name }}</h3>
-              <p>{{ song.artist }}</p>
+        <!-- 热门歌曲 -->
+        <section>
+          <h2>热门歌曲</h2>
+          <div class="song-list">
+            <div class="song" v-for="song in popularSongs" :key="song.id">
+              <van-image :src="song.picUrl" width="100" height="100" fit="cover" :alt="song.name" />
+              <div class="song-info">
+                <h3>{{ song.name }}</h3>
+                <p>{{ song.artist }}</p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- 推荐的专辑 -->
-      <section>
-        <h2>推荐的专辑</h2>
-        <div class="playlist-list">
-          <div class="playlist" v-for="item in recommendedAlbums" :key="item.id">
-            <van-image :src="item.picUrl" width="100" height="100" fit="cover" :alt="item.name" />
-            <div class="playlist-info">{{ item.name }}</div>
+        <!-- 最近播放 -->
+        <section>
+          <h2>最近播放</h2>
+          <div class="song-list">
+            <div class="song" v-for="song in recentPlays" :key="song.id">
+              <van-image :src="song.picUrl" width="100" height="100" fit="cover" :alt="song.name" />
+              <div class="song-info">
+                <h3>{{ song.name }}</h3>
+                <p>{{ song.artist }}</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <!-- 推荐的专辑 -->
+        <section>
+          <h2>推荐的专辑</h2>
+          <div class="playlist-list">
+            <div class="playlist" v-for="item in banners" :key="item.encodeId">
+              <van-image :src="item.pic" mode="aspectFill" width="100" height="100" fit="cover" :alt="item.name" />
+              <!-- <div class="playlist-info">{{ item.name }}</div> -->
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- 底部导航栏 -->
+      <!-- <Tabbar /> -->
+
+
     </div>
-
-    <!-- 底部导航栏 -->
-    <Tabbar />
 
     <Myself class="myself" @hidden="handle" :class="{ 'show': isShowMenu }" />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import Tabbar from '@/components/Tabbar.vue';
+// import Tabbar from '@/components/Tabbar.vue';
 import Myself from '@/components/Myself.vue';
+import request from '../api/api.js';
 
 const router = useRouter();
-const active = ref(0);
-const isShowMenu = ref(false)
+const active = reactive(0);
+const isShowMenu = ref(false);
+const state = reactive({
+  banners: []
+});
 
-const handle = (e) => {
-  isShowMenu.value = e
+async function getData() {
+  try {
+    const res = await request({
+      url: 'http://localhost:3000/banner',
+      method: 'GET',
+    });
+
+    // 打印 API 响应以确认数据结构
+    console.log('API Response:', res);
+
+    // 检查 res.data 和 res.data.banners 是否已定义
+    if (res && res.data && Array.isArray(res.data.banners)) {
+      console.log('+++++++++++++');
+      state.banners = res.banners;
+      
+    } else {
+      console.log('----------');
+      console.error('Unexpected API response structure:', res);
+      state.banners = []; // 默认设置为空数组以避免 UI 错误
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    state.banners = []; // 默认设置为空数组以避免 UI 错误
+  }
 }
 
+onMounted(() => {
+  getData();
+});
+
+const handle = (e) => {
+  isShowMenu.value = e;
+};
 const dailyPlaylists = ref([
   { id: 1, name: '歌单1', picUrl: 'https://example.com/img1.jpg' },
   { id: 2, name: '歌单2', picUrl: 'https://example.com/img2.jpg' },
@@ -133,7 +174,10 @@ const onTabChange = (index) => {
   height: 100vh;
   background-origin: border-box;
   transform: translateX(0%);
-  &.hide{
+  position: absolute;
+  width: 100vw;
+
+  &.hide {
     transform: translateX(100%);
   }
 }
@@ -143,6 +187,21 @@ const onTabChange = (index) => {
   overflow-y: auto;
   padding: 16px;
 }
+
+
+
+.my-swipe .van-swipe-item {
+  color: #fff;
+  font-size: 20px;
+  line-height: 150px;
+  text-align: center;
+  background-color: #39a9ed;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+
+
 
 section {
   margin-bottom: 20px;
@@ -169,12 +228,13 @@ h2 {
   margin-top: 5px;
 }
 
-.myself{
+.myself {
   width: 100%;
   height: 100%;
   position: absolute;
   transform: translateX(-100%);
-  &.show{
+
+  &.show {
     transform: translateX(0%);
   }
 }

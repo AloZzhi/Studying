@@ -30,14 +30,14 @@
         <van-loading color="#1989fa" v-else></van-loading>
       </div>
     </footer>
-    <Tabbar />
+    <!-- <Tabbar /> -->
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, toRefs } from "vue";
 import { useAiChatStore } from "@/stores/aiChatStore";
-import Tabbar from "@/components/Tabbar.vue";
+// import Tabbar from "@/components/Tabbar.vue";
 
 const newMessage = ref("");
 const messageContainer = ref(null);
@@ -131,3 +131,8 @@ function coze_request(query: string = "") {
   });
 }
 </script>
+<style lang="less" scoped>
+.chat-app {
+  height: 100%;
+}
+</style>

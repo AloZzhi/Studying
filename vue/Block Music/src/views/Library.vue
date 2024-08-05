@@ -47,7 +47,7 @@
         </van-cell-group>
       </div>
     </div>
-    <Tabbar />
+    <!-- <Tabbar /> -->
   </div>
 </template>
 
