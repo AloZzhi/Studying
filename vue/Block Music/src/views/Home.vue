@@ -8,9 +8,9 @@
       <!-- 内容部分 -->
       <div class="content">
         <div class="swipe">
-          <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+          <van-swipe class="my-swipe" indicator-color="white">
             <van-swipe-item v-for="item in state.banners" :key="item.targetId">
-              <van-image :src="item.imageUrl" />
+              <van-image :src="item.imageUrl" class="pic" />
             </van-swipe-item>
           </van-swipe>
         </div>
@@ -59,7 +59,7 @@
         <section>
           <h2>推荐的专辑</h2>
           <div class="playlist-list">
-            <div class="playlist" v-for="item in banners" :key="item.encodeId">
+            <div class="playlist" v-for="item in state.banners" :key="item.encodeId">
               <van-image :src="item.pic" mode="aspectFill" width="100" height="100" fit="cover" :alt="item.name" />
               <!-- <div class="playlist-info">{{ item.name }}</div> -->
             </div>
@@ -97,23 +97,11 @@ async function getData() {
       url: 'http://localhost:3000/banner',
       method: 'GET',
     });
-
     // 打印 API 响应以确认数据结构
     console.log('API Response:', res);
-
-    // 检查 res.data 和 res.data.banners 是否已定义
-    if (res && res.data && Array.isArray(res.data.banners)) {
-      console.log('+++++++++++++');
-      state.banners = res.banners;
-      
-    } else {
-      console.log('----------');
-      console.error('Unexpected API response structure:', res);
-      state.banners = []; // 默认设置为空数组以避免 UI 错误
-    }
+    state.banners = res.banners
   } catch (error) {
     console.error('Error fetching data:', error);
-    state.banners = []; // 默认设置为空数组以避免 UI 错误
   }
 }
 
@@ -167,7 +155,7 @@ const onTabChange = (index) => {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .home {
   display: flex;
   flex-direction: column;
@@ -190,14 +178,19 @@ const onTabChange = (index) => {
 
 
 
-.my-swipe .van-swipe-item {
-  color: #fff;
-  font-size: 20px;
-  line-height: 150px;
-  text-align: center;
-  background-color: #39a9ed;
-  margin-bottom: 10px;
+.my-swipe {
   border-radius: 10px;
+  overflow: hidden;
+
+  .van-swipe-item {
+    border-radius: 10px;
+    overflow: hidden;
+
+    .pic {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 
 

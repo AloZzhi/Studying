@@ -1,45 +1,101 @@
 <template>
 	<view class="suggest">
 		<wyheader>
-
-
 			<template v-slot:content>
 				<view class="search">
-					<uni-search-bar placeholder="今天想听什么"></uni-search-bar>
+					<uni-search-bar placeholder="歌曲"></uni-search-bar>
 				</view>
 			</template>
 		</wyheader>
+
 		<!-- banner -->
 		<view class="banner">
-			<swiper autoplay="true" interval="3000" duration="500" indicator-dots="true" active-class="swiper-active">
+			<swiper class="swiper" indicator-dots="true" autoplay="true" circular="true">
 				<swiper-item v-for="item in state.banners" :key="item.encodeId">
 					<view class="swiper-item">
-						<image :src="item.pic" mode="aspectFill"></image>
+						<image :src="item.pic"></image>
 					</view>
 				</swiper-item>
 			</swiper>
 		</view>
+
+		<!-- balls -->
+		<view class="balls">
+			<view class="ball-item" v-for="item in state.balls" :key="item.id">
+				<view class="icon">
+					<image :src="item.iconUrl"></image>
+				</view>
+				<text>{{item.name}}</text>
+			</view>
+		</view>
+
+		<!-- 推荐歌单 -->
+		<songList :list="state.songList" title="推荐歌单"></songList>
+
+		<!-- 新歌 -->
+		<newSongs :list="state.newSongs"></newSongs>
+
+		<!-- menu -->
+		<menuLeft />
+
+
 	</view>
 </template>
 
 <script setup>
 	import {
+		onBeforeMount,
 		reactive
-	} from 'vue'
+	} from 'vue';
+	import {
+		apiGetBanner,
+		apiGetBall,
+		apiGetRecommendList,
+		apiGetNewSongs
+	} from '@/api/index.js';
+	import {
+		onLoad
+	} from '@dcloudio/uni-app'
+
 	const state = reactive({
-		banners: []
+		banners: [],
+		balls: [],
+		songList: [],
+		newSongs: []
+	});
+
+	onLoad(() => {
+		getBanner();
+		getBall();
+		getRecommendList();
+		getNewSongs();
 	})
-	uni.request({
-		url: 'http://localhost:3000/banner/',
-		method: "GET",
-		data: {
+	const getBanner = () => {
+		apiGetBanner({
 			type: 2
-		},
-		success(res) {
+		}).then((res) => {
+			state.banners = res.data.banners;
+		});
+	};
+
+	const getBall = () => {
+		apiGetBall().then(res => {
+			state.balls = res.data.data;
+		})
+	}
+
+	const getRecommendList = () => {
+		apiGetRecommendList().then(res => {
+			state.songList = res.data.recommend
+		})
+	}
+
+	const getNewSongs = () => {
+		apiGetNewSongs().then(res => {
 			console.log(res)
-			state.banners = res.data.banners
-		}
-	})
+			state.newSongs = res.data.data.dailySongs
+		})
+	}
 </script>
 
 <style lang="scss" scoped>
@@ -100,6 +156,5 @@
 				}
 			}
 		}
-
 	}
 </style>

@@ -5,7 +5,7 @@
 		</view>
 	</view>
 	<view class="header">
-		<uni-icons type="bars" size="30"></uni-icons>
+		<uni-icons type="bars" size="22" @click="showMenu"></uni-icons>
 
 		<view class="content">
 			<slot name="content"></slot>
@@ -15,6 +15,9 @@
 </template>
 
 <script setup>
+	import {
+		useStore
+	} from 'vuex'
 	defineProps({
 		icon: {
 			type: String,
@@ -25,6 +28,10 @@
 			default: '#000'
 		}
 	})
+	const store = useStore()
+	const showMenu = () => {
+		store.commit('changeIsShowMenu', true)
+	}
 </script>
 
 <style lang="scss" scoped>
