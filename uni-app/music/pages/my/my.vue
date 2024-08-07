@@ -1,19 +1,17 @@
 <template>
-	<scroll-view scroll-y="true" class='mine'>
+	<scroll-view scroll-y="true" class="mine">
 		<wyheader icon="more-filled">
 			<template v-slot:content>
-				<view>
-					我的音乐
-				</view>
+				<view>我的音乐</view>
 			</template>
 		</wyheader>
 
 		<menuLeft></menuLeft>
 
 		<view class="mine-bd">
-			<view class="bg">
-				<!-- 背景图片 -->
+			<view class="bg" :style="{backgroundImage: `url(${userInfo.profile && userInfo.profile.backgroundUrl})`}">
 			</view>
+
 			<view class="user">
 				<view class="pic">
 					<image :src="userInfo.profile && userInfo.profile.avatarUrl" mode="aspectFill"></image>
@@ -21,13 +19,13 @@
 
 				<view class="user-online" v-if="isLogin">
 					<view class="username">
-						<text>{{userInfo.profile && userInfo.profile.nickname}}</text>
+						<text>{{ userInfo.profile && userInfo.profile.nickname }}</text>
 					</view>
 					<view class="user-desc">
 						<view class="user-desc-horoscope">
 							<text class="iconfont icon-boy"></text>
-							<text>{{formateTime(userInfo.profile && userInfo.profile.birthday).ageLever}}后</text>
-							<text>{{formateTime(userInfo.profile && userInfo.profile.birthday).horoscope}}座</text>
+							<text>{{ formateTime(userInfo.profile && userInfo.profile.birthday).ageLever }}后</text>
+							<text>{{ formateTime(userInfo.profile && userInfo.profile.birthday).horoscope }}座</text>
 						</view>
 						<view class="user-desc-address">
 							<text>江西 南昌</text>
@@ -38,19 +36,19 @@
 					</view>
 					<view class="user-wyInfo">
 						<view class="wyInfo-gz">
-							<text>{{userInfo.profile && userInfo.profile.follows}}</text>
+							<text>{{ userInfo.profile && userInfo.profile.follows }}</text>
 							关注
 						</view>
 						<view class="wyInfo-fs">
-							<text>{{userInfo.profile && userInfo.profile.followeds}}</text>
+							<text>{{ userInfo.profile && userInfo.profile.followeds }}</text>
 							粉丝
 						</view>
 						<view class="wyInfo-dj">
-							<text>Lv.{{userInfo.level}}</text>
+							<text>Lv.{{ userInfo.level }}</text>
 							等级
 						</view>
 						<view class="wyInfo-tg">
-							<text>{{userInfo.listenSongs}}时</text>
+							<text>{{ userInfo.listenSongs }}时</text>
 							听歌
 						</view>
 					</view>
@@ -81,7 +79,44 @@
 					<text>立即登录</text>
 					<uni-icons type="right" size="16"></uni-icons>
 				</view>
+
 			</view>
+
+			<!-- list -->
+			<view class="list">
+				<view class="nav">
+					<view class="nav-item" @click="changeNav(index)" :class="{'active': activeNum === index}"
+						v-for="(item, index) in listNav" :key="index">
+						{{item}}
+					</view>
+				</view>
+				<view class="list-sort">
+					<view class="tab" v-show="showTab[0]">
+						<view class="sort-item" @click="goSongsList(item.id)" v-for="item in sort_playlist"
+							:key="item.id">
+							<view class="pic">
+								<image :src="item.coverImgUrl" mode="aspectFill"></image>
+							</view>
+							<view class="desc">
+								<view class="title">{{item.name}}</view>
+								<view class="detail">
+									<text v-if="item.specialType == 0">歌单</text>
+									<text>{{item.trackCount}}首</text>
+									<text v-if="item.specialType > 0">{{item.playCount}}播放</text>
+									<text v-if="item.specialType == 0">{{item.creator.nickname}}</text>
+								</view>
+							</view>
+						</view>
+					</view>
+					<view class="tab" v-show="showTab[1]">
+						播客的内容
+					</view>
+					<view class="tab" v-show="showTab[2]">
+						动态的内容
+					</view>
+				</view>
+			</view>
+
 		</view>
 
 	</scroll-view>
@@ -89,9 +124,82 @@
 
 <script setup>
 	import {
-		ref
+		computed,
+		ref,
+		watch
 	} from 'vue';
-	const userInfo = ref({}) //用户信息
+	import {
+		useStore
+	} from 'vuex';
+	import {
+		apiGetUserInfo,
+		baseUrl,
+		apiGetUserSongsList
+	} from '@/api/index.js';
+	import {
+		onLoad
+	} from '@dcloudio/uni-app';
+	import {
+		formateTime
+	} from '@/utils/index.js';
+
+	const userInfo = ref({}); // 用户信息
+	const store = useStore();
+	const isLogin = computed(() => store.state.isLogin);
+	const listNav = ref(['音乐', '播客', '动态'])
+	const activeNum = ref(0)
+	const nav_bottom = ref(750 / 3 / 2 + 'rpx')
+	const showTab = ref([true, false, false])
+	const sort_playlist = ref([])
+	// onLoad(() => {
+	// 	getUserInfo()
+	// })
+
+	const login = () => {
+		uni.reLaunch({
+			url: '/pages/login/login'
+		});
+	};
+
+	const getUserInfo = () => {
+		apiGetUserInfo(store.state.userInfo.id).then((res) => {
+			console.log(res);
+			userInfo.value = res.data;
+		});
+	};
+
+
+	const changeNav = (i) => {
+		activeNum.value = i;
+		nav_bottom.value = 750 / 3 / 2 * (2 * i + 1) + 'rpx';
+		showTab.value = [false, false, false]
+		showTab.value[i] = true
+	}
+	const goSongsList = (id) => {
+		uni.navigateTo({
+			url: `/pages/songsList/songsList?id=${id}`
+		})
+	}
+
+	// 获取用户歌单
+	const getUserSongsList = () => {
+		apiGetUserSongsList(store.state.userInfo.id).then(res => {
+			console.log(res.data);
+			sort_playlist.value = res.data.playlist
+		})
+	}
+
+	watch(
+		() => store.state.userInfo.id,
+		(newVal, oldVal) => {
+			if (newVal) {
+				getUserInfo();
+				getUserSongsList();
+			}
+		}, {
+			immediate: true
+		}
+	);
 </script>
 
 <style lang="scss" scoped>

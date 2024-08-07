@@ -73,3 +73,19 @@ function* hai() {
 for (let h of hai()) {
   console.log(h);
 }
+
+
+const h = function* hai() {
+  const h1 = yield '嗨！';
+  const h2 = yield '你好吗？';
+  console.log(h1+h2);
+  
+}
+
+async function a() {
+  
+    console.log(1);
+    const data = await getData(); // 等待数据获取完成
+    console.log(2);
+ 
+}
