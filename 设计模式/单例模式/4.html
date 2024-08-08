@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="save">存储</button>
+  <button id="get">取值</button>
+
+  <script>
+    let save = document.getElementById('save')
+    let get = document.getElementById('get')
+
+    class Storage {
+      static getInstance() {
+        if (!Storage.instance) {
+          Storage.instance = new Storage()
+        }
+        return Storage.instance
+      }
+      getItem(key) {
+        return localStorage.getItem(key)
+      }
+      setItem(key, val) {
+        return localStorage.setItem(key, val)
+      }
+    }
+
+    const storage = Storage.getInstance()
+    const storage2 = Storage.getInstance()
+    
+    save.onclick = function() {
+      // localStorage.setItem('name', '高老师')
+      storage.setItem('name', '高老师')
+    }
+
+    get.onclick = function() {
+      alert(storage2.getItem('name'))
+    }
+
+  </script>
+</body>
+</html>
