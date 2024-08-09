@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>three.js canvas earth</title>
+    <script src="https://cdn.bootcss.com/three.js/r83/three.min.js"></script>
+</head>
+
+<body>
+    <canvas id="webglcanvas"></canvas>
+    <script>
+        // three.js 3D js lib 
+        // 3D 数据可视化 滴滴城市数据化 城市智能 
+        // html5  WebSocket canvas webGL 
+        // 导演 
+        let canvas; // 3D容器
+        let camera,   // 照相机
+            scene,    // 场景
+            renderer; // 渲染器
+        let group;  // 组合 
+        // 整屏中心点
+        let windowHalfX = window.innerWidth / 2;
+        let windowHalfY = window.innerHeight / 2;
+        // 准备 
+        init();
+        // 一直拍
+        animate();
+
+        function init() {
+            // 3D 输出容器
+            canvas = document.getElementById('webglcanvas');
+            // 创建相机
+            camera = new THREE.PerspectiveCamera(
+                60,
+                // 竖拍，横拍
+                window.innerWidth / window.innerHeight,
+                1,
+                2000
+            )
+            camera.position.z = 1200;
+
+            // 场景
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x123123);
+            // 机车 BMW 摩托车 涛哥 女朋友  猫 
+            group = new THREE.Group();
+            scene.add(group)
+
+            // 球体
+            // jpg 
+            let loader = new THREE.TextureLoader();
+            loader.load('earth.jpg', function (texture) {
+                // 模型或形状 
+                // 材质
+                // 球体 
+                let geometry = new THREE.SphereGeometry(200, 20, 20);
+
+                let material = new THREE.MeshBasicMaterial({
+                    map: texture
+                });
+                // 渲染对象 
+                let mesh = new THREE.Mesh(geometry, material);
+                // 添加到group
+                group.add(mesh);
+            })
+            // camera sceen , 怎么输出？ 
+            // WebGL GPU 计算     电脑上玩的大型游戏  OPENGL 
+            // 输出到  canvas 中
+            // webGL web端的绘画技术 canvas结合
+            renderer = new THREE.WebGLRenderer({
+                canvas: canvas,
+                antialias: true
+            });
+            // 渲染器显示的大小
+            renderer.setSize(window.innerWidth, window.innerHeight)
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            group.rotation.x += 0.01;
+            group.rotation.y += 0.05;
+            // group.rotation.z += 0.02;
+            render();
+        }
+
+        function render() {
+            renderer.render(scene, camera);
+        }
+    </script>
+</body>
+
+</html>
