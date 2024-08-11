@@ -3,7 +3,7 @@ const app = new Koa()
 const fs = require('fs');
 
 const main = (ctx) => {
-  // ctx.response.type
+  // ctx.response.type = 'html'
   // const context = fs.readFileSync('./template.html', 'utf-8').toString()
   // console.log(context)
   // ctx.body = context

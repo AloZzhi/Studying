@@ -15,12 +15,15 @@ const logger = (ctx, next) => {
   console.log(`${ctx.url} - ${ctx.method} - ${Date.now()}`);
   next()
 }
-// app.use(main)
+
+// 使用中间件
 app.use(logger)
+
+// 使用路由
 app.use(router.get('/', main))
 app.use(router.get('/about', about))
 
-
+// 启动服务器
 app.listen(3000, () => {
   console.log('listening on port 3000');
 })
