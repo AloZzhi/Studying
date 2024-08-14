@@ -80,19 +80,21 @@
 
 	const getBall = () => {
 		apiGetBall().then(res => {
+			console.log(res)
 			state.balls = res.data.data;
 		})
 	}
 
 	const getRecommendList = () => {
 		apiGetRecommendList().then(res => {
+			// console.log(res)
 			state.songList = res.data.recommend
 		})
 	}
 
 	const getNewSongs = () => {
 		apiGetNewSongs().then(res => {
-			console.log(res)
+			// console.log(res)
 			state.newSongs = res.data.data.dailySongs
 		})
 	}

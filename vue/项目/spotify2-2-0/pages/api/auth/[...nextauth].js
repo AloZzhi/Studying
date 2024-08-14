@@ -1,3 +1,4 @@
+import { access } from "fs"
 import NextAuth from "next-auth"
 import SpotifyProvider from "next-auth/providers/spotify"
 
@@ -15,8 +16,26 @@ const params = {
   scope: scopes
 }
 
-const LOGIN_URL = ""
+const LOGIN_URL = "https://accounts.spotify.com/authorize?'" + new URLSearchParams(params).toString()
 
+async function refreshAccessToken(token) {
+  //刷新token
+  const params = new URLSearchParams()
+  params.append("grant_type", "refresh_token")
+  params.append("refresh_token",token.refreshToken)
+  const response = await fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: {
+      'Authorization': 'Basic' + (new Buffer.from(process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_SECRET).toString('base64'))
+    },
+    body:params
+  })
+  const data = await response.json()
+  return {
+    accessToken:data.access_token,
+    refreshToken:data.re
+  }
+}
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -26,8 +45,34 @@ export const authOptions = {
       clientSecret: process.env.SPOTIFY_SECRET,
       authorization: LOGIN_URL
     }),
-    // ...add more providers here
+    // ...add more providers here 可以添加更多登录方式
   ],
+  secret: process.env.JWT_SECRET,
+  pages: {
+    signIn: "/login"
+  },
+  callbacks: {
+    async jwt({ token, account }) {
+      // Persist the OAuth access_token to the token right after signin
+      if (account) {
+        token.accessToken = account.access_token
+        token.refreshToken = account.refresh_token
+        token.accessTokenExpires = account.expires_at
+        return token
+      }
+      //接收的token没过期
+      if (Date.now() < token.accessTokenExpires * 1000) {
+        return token
+      }
+      //接受的token已过期
+      return refreshAccessToken(token)
+    },
+    async session({ session, token, user }) {
+      // Send properties to the client, like an access_token from a provider.
+      session.accessToken = token.accessToken
+      return session
+    }
+  }
 }
 
 export default NextAuth(authOptions)

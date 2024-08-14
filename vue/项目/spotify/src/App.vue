@@ -48,8 +48,8 @@ let openMenu = ref(false)
       <span v-if="openMenu"
         class="fixed w-[190px] bg-[#282828] shadow-2xl z-50 rounded-sm top-[52px] right-[35px] p-1 cursor-pointer">
         <ul class="text-gray-200 font-semibold text-[14px]">
-          <li class="px-3 py-2.5 hover:bg-[#3E3D3D] boder-b border-b-gray-600">Profile</li>
-          <li class="px-3 py-2.5 hover:bg-[#3E3D3D]">Log out</li>
+          <li class="px-3 py-2.5 hover:bg-[#3E3D3D] boder-b border-b-gray-600">资料</li>
+          <li class="px-3 py-2.5 hover:bg-[#3E3D3D]">退出</li>
         </ul>
       </span>
     </div>
@@ -60,24 +60,24 @@ let openMenu = ref(false)
       <div class="my-8"></div>
       <ul>
         <RouterLink to="/">
-          <MenuItem class="ml-[1px]" :iconSize="23" name="Home" iconString="home" pageUrl="/" />
+          <MenuItem class="ml-[1px]" :iconSize="23" name="首页" iconString="home" pageUrl="/" />
         </RouterLink>
         <RouterLink to="/search">
-          <MenuItem class="ml-[1px]" :iconSize="24" name="Search" iconString="search" pageUrl="/search" />
+          <MenuItem class="ml-[1px]" :iconSize="24" name="搜索" iconString="search" pageUrl="/search" />
         </RouterLink>
         <RouterLink to="/library">
-          <MenuItem class="ml-[2px]" :iconSize="23" name="Library" iconString="library" pageUrl="/library" />
+          <MenuItem class="ml-[2px]" :iconSize="23" name="资料库" iconString="library" pageUrl="/library" />
         </RouterLink>
         <div class="py-3.5"></div>
-        <MenuItem :iconSize="24" name="Create Playlist" iconString="playlist" pageUrl="/playlist" />
-        <MenuItem class="-ml-[1px] " :iconSize="27" name="Liked Songs" iconString="liked" pageUrl="/liked" />
+        <MenuItem :iconSize="24" name="创建歌单" iconString="playlist" pageUrl="/playlist" />
+        <MenuItem class="-ml-[1px] " :iconSize="27" name="我喜欢" iconString="liked" pageUrl="/liked" />
       </ul>
       <div class="border-b border-b-gray-700"></div>
       <ul>
-        <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">My Playlist #1</li>
-        <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">My Playlist #2</li>
-        <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">My Playlist #3</li>
-        <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">My Playlist #4</li>
+        <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">我的歌单 #1</li>
+        <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">我的歌单 #2</li>
+        <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">我的歌单 #3</li>
+        <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">我的歌单 #4</li>
       </ul>
     </div>
   </div>

@@ -1,5 +1,5 @@
 <template>
-	<view class="player" v-if="store.state.isShowPlayer">
+	<view class="player" v-if="store.state.isShowPlayer" @click="goPlayMusic">
 		<view class="mini-player">
 			<view class="pic">
 				<image :src="state.pic"></image>
@@ -80,6 +80,13 @@
 			getSongDetail(newVal);
 		}
 	);
+
+	//去播放页
+	const goPlayMusic = (id) => {
+		uni.navigateTo({
+			url: `/pages/playMusic/playMusic?id=${id}`
+		})
+	}
 </script>
 
 <style lang="scss">

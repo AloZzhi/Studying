@@ -108,8 +108,17 @@
 	}
 
 	const goBack = () => {
-		uni.navigateBack()
+		// uni.navigateBack()
+		uni.switchTab({
+			url: '/pages/my/my' // 确保路径正确，路径应该是 tabBar 的路径
+		});
 	}
+
+	// const goBack = () => {
+	// 	uni.navigateBack({
+	// 		url: `/pages/my/my`
+	// 	})
+	// }
 
 	const showPlayer = (id) => {
 		// 展示播放器

@@ -163,7 +163,6 @@
 
 	const getUserInfo = () => {
 		apiGetUserInfo(store.state.userInfo.id).then((res) => {
-			console.log(res);
 			userInfo.value = res.data;
 		});
 	};
@@ -184,7 +183,6 @@
 	// 获取用户歌单
 	const getUserSongsList = () => {
 		apiGetUserSongsList(store.state.userInfo.id).then(res => {
-			console.log(res.data);
 			sort_playlist.value = res.data.playlist
 		})
 	}

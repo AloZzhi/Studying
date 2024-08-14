@@ -31,17 +31,21 @@
 			}
 		},
 		{
-			"path" : "pages/login/login",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		},
 		{
-			"path" : "pages/songsList/songsList",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
+			"path": "pages/songsList/songsList",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/playMusic/playMusic",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		}
 	],

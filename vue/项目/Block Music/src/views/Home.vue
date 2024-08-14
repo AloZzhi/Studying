@@ -5,10 +5,10 @@
 
       <van-nav-bar title="Block" left-text="我的" left-arrow @click-left="isShowMenu = true" />
 
-      <!-- 内容部分 -->
+      <!-- 轮播图 -->
       <div class="content">
         <div class="swipe">
-          <van-swipe class="my-swipe" indicator-color="white">
+          <van-swipe class="my-swipe" indicator-color="white" :autoplay="3000" >
             <van-swipe-item v-for="item in state.banners" :key="item.targetId">
               <van-image :src="item.imageUrl" class="pic" />
             </van-swipe-item>
@@ -16,9 +16,9 @@
         </div>
 
 
-        <!-- 每日推荐歌单 -->
+        <!-- 精品歌单 -->
         <section>
-          <h2>每日推荐歌单</h2>
+          <h2>精品歌单</h2>
           <div class="playlist-list">
             <div class="playlist" v-for="item in dailyPlaylists" :key="item.id">
               <van-image :src="item.picUrl" width="100" height="100" fit="cover" :alt="item.name" />
@@ -84,14 +84,16 @@ import { useRouter } from 'vue-router';
 import Myself from '@/components/Myself.vue';
 import request from '../api/api.js';
 
+
 const router = useRouter();
 const active = reactive(0);
 const isShowMenu = ref(false);
 const state = reactive({
-  banners: []
+  banners: [],
+  playlist:[]
 });
 
-async function getData() {
+async function getBanner() {
   try {
     const res = await request({
       url: 'http://localhost:3000/banner',
@@ -105,18 +107,33 @@ async function getData() {
   }
 }
 
+
+async function getPlaylist() {
+  try {
+    const res = await request({
+      url: 'http://localhost:3000/top/playlist/highquality',
+      method: 'GET',
+    });
+    // 打印 API 响应以确认数据结构
+    console.log('API Response:', res);
+    state.playlist = res.playlist
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
 onMounted(() => {
-  getData();
+  getBanner();
+  getPlaylist();
 });
 
 const handle = (e) => {
   isShowMenu.value = e;
 };
-const dailyPlaylists = ref([
-  { id: 1, name: '歌单1', picUrl: 'https://example.com/img1.jpg' },
-  { id: 2, name: '歌单2', picUrl: 'https://example.com/img2.jpg' },
-  { id: 3, name: '歌单3', picUrl: 'https://example.com/img3.jpg' },
-]);
+// const dailyPlaylists = ref([
+//   { id: 1, name: '歌单1', picUrl: 'https://example.com/img1.jpg' },
+//   { id: 2, name: '歌单2', picUrl: 'https://example.com/img2.jpg' },
+//   { id: 3, name: '歌单3', picUrl: 'https://example.com/img3.jpg' },
+// ]);
 
 const popularSongs = ref([
   { id: 1, name: '热门歌曲1', artist: '歌手1', picUrl: 'https://example.com/song1.jpg' },
