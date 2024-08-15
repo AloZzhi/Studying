@@ -1,7 +1,7 @@
 export const baseUrl = process.env.NODE_ENV ===
 	'development' ?
-	'http://172.22.111.140:3000' :
-	'http://172.22.111.140:3000';
+	'http://192.168.1.13:3000' :
+	'http://192.168.1.13:3000';
 
 // 首页 banner
 export const apiGetBanner = (data) => {
@@ -107,6 +107,17 @@ export const apiGetSongDetail = (id) => {
 		data: {
 			ids: id,
 
+		}
+	})
+}
+
+//获取歌词
+export const apiGetLyric = (id) => {
+	return uni.request({
+		url: baseUrl + '/lyric',
+		method: "GET",
+		data: {
+			ids: id,
 		}
 	})
 }
