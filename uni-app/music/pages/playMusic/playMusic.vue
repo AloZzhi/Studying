@@ -68,7 +68,7 @@
 		if (props.id) {
 			song.value.id = props.id;
 			fetchSongDetails(song.value.id); // 获取歌曲详情
-			initAudio(); // 初始化音频上下文
+			initAudio(); // 初始化音频
 		}
 	});
 
