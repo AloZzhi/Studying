@@ -20,7 +20,8 @@
 					cookie: key
 				},
 				success: (res) => {
-					console.log(res.data.data.account.id);
+					// console.log(res.data.data.account.id);
+					// console.log(res);
 					let id = res.data.data.account.id
 					if (id) {
 						this.$store.commit('changeIsLogin', true)
@@ -47,7 +48,7 @@
 						cookie: key
 					},
 					success: (res) => {
-						console.log(res);
+						// console.log(res);
 						let nickname = res.data.profile && res.data.profile.nickname
 						let id = res.data.profile && res.data.profile.userId
 						let avatar = res.data.profile && res.data.profile.avatarUrl

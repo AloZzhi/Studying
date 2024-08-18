@@ -1,7 +1,7 @@
 export const baseUrl = process.env.NODE_ENV ===
 	'development' ?
-	'http://192.168.1.13:3000' :
-	'http://192.168.1.13:3000';
+	'http://192.168.1.94:3000' :
+	'http://192.168.1.94:3000';
 
 // 首页 banner
 export const apiGetBanner = (data) => {

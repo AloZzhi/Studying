@@ -90,7 +90,7 @@
 	const store = useStore()
 
 	onLoad((option) => { // option 路由上的参数
-		console.log(option);
+		// console.log(option);
 		getPlayListInfo(option.id)
 		getPlayList(option.id)
 	})

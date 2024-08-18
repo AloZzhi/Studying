@@ -7,7 +7,7 @@
 			</view>
 		</view>
 		<view class="recommend-bd">
-			<view class="recommend-bd__item" v-for="item in list" :key="item.id">
+			<view class="recommend-bd__item" v-for="item in list" :key="item.id" @tap="handleToDetail(item.id)">
 				<view class="item-pic">
 					<image :src="item.picUrl" mode="aspectFill"></image>
 				</view>

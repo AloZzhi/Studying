@@ -53,6 +53,7 @@
 		innerAudioContext.destroy()
 		const res = await apiGetSongUrl(id)
 		console.log(res.data.data);
+		console.log(id);
 		state.url = res.data.data[0].url
 		// 创建播放器
 		innerAudioContext = uni.createInnerAudioContext()
@@ -67,7 +68,7 @@
 	};
 	const getSongDetail = async (id) => {
 		const res = await apiGetSongDetail(id)
-		console.log(res.data.songs);
+		// console.log(res.data.songs);
 		state.name = res.data.songs[0].al.name
 		state.pic = res.data.songs[0].al.picUrl
 		state.time = res.data.songs[0].dt
@@ -81,8 +82,11 @@
 		}
 	);
 
+
 	//去播放页
-	const goPlayMusic = (id) => {
+	const goPlayMusic = async (id) => {
+		const res = await apiGetSongDetail(id)
+		console.log(res.data);
 		uni.navigateTo({
 			url: `/pages/playMusic/playMusic?id=${id}`
 		})

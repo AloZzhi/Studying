@@ -80,7 +80,7 @@
 
 	const getBall = () => {
 		apiGetBall().then(res => {
-			console.log(res)
+			// console.log(res)
 			state.balls = res.data.data;
 		})
 	}

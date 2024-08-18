@@ -4,7 +4,7 @@
 		<view class="overlay">
 			<view class="header">
 				<button @click="goBack" class="back-button">
-					<uni-icons type="left" size="22" color="#134567"></uni-icons>
+					<uni-icons type="left" size="22" color="#ffffff"></uni-icons>
 				</button>
 			</view>
 			<image :src="song.cover" class="cover" mode="aspectFill" />
@@ -13,9 +13,19 @@
 				<text class="song-artist">{{ song.artist }}</text>
 			</view>
 			<view class="controls">
-				<button @click="onPrevious" class="control-button">上一曲</button>
-				<button @click="togglePlay" class="play-button">{{ isPlaying ? '暂停' : '播放' }}</button>
-				<button @click="onNext" class="control-button">下一曲</button>
+				<button @click="onPrevious" class="control-button" style="margin: 20rpx;">
+					<image src="../../static/images/music_previous.png" mode="aspectFill"
+						style="width: 120px; height: 120px;" />
+				</button>
+				<button @click="togglePlay" class="play-button" style="margin: 20rpx;">
+					<image
+						:src="isPlaying ? '../../static/images/music_pause.png' : '../../static/images/music_play.png'"
+						mode="aspectFill" style="width: 100px; height: 100px;" />
+				</button>
+				<button @click="onNext" class="control-button" style="margin: 20rpx;">
+					<image src="../../static/images/music_next.png" mode="aspectFill"
+						style="width: 120px; height: 120px;" />
+				</button>
 			</view>
 			<view class="progress-bar">
 				<text class="time">{{ formatTime(currentTime) }}</text>
@@ -28,6 +38,8 @@
 		</view>
 	</view>
 </template>
+
+
 <script setup>
 	import {
 		ref,
@@ -38,12 +50,10 @@
 		useRouter
 	} from 'vue-router';
 
-	// 组件的 props
 	const props = defineProps({
 		id: Number
 	});
 
-	// 响应式数据
 	const song = ref({
 		id: null,
 		name: '示例歌曲',
@@ -57,18 +67,16 @@
 		"这是第一句歌词",
 		"这是第二句歌词",
 		"这是第三句歌词",
-		
 	]);
 
 	let audioContext = null;
-	const router = useRouter(); // 使用 Vue Router
+	const router = useRouter();
 
-	// 组件生命周期钩子
 	onMounted(() => {
 		if (props.id) {
 			song.value.id = props.id;
-			fetchSongDetails(song.value.id); // 获取歌曲详情
-			initAudio(); // 初始化音频
+			fetchSongDetails(song.value.id);
+			initAudio();
 		}
 	});
 
@@ -78,7 +86,6 @@
 		}
 	});
 
-	// 方法定义
 	const fetchSongDetails = async (id) => {
 		const response = await getSongDetail(id);
 		if (response) {
@@ -106,7 +113,7 @@
 
 	const initAudio = () => {
 		audioContext = uni.createInnerAudioContext();
-		audioContext.src = `https://example.com/music/${song.value.id}.mp3`; // 替换为实际的音频源
+		audioContext.src = `https://example.com/music/${song.value.id}.mp3`;
 		audioContext.onPlay(() => {
 			isPlaying.value = true;
 		});
@@ -115,7 +122,7 @@
 		});
 		audioContext.onEnded(() => {
 			isPlaying.value = false;
-			onNext(); // 播放下一曲
+			onNext();
 		});
 		audioContext.onTimeUpdate(() => {
 			currentTime.value = audioContext.currentTime;
@@ -132,22 +139,16 @@
 	};
 
 	const onNext = () => {
-		currentSongIndex.value = (currentSongIndex.value + 1) % songList.value.length;
-		loadSong(songList.value[currentSongIndex.value].id);
-		audioContext.src = `https://example.com/music/${song.value.id}.mp3`;
-		audioContext.play();
+		// Load next song logic
 	};
 
 	const onPrevious = () => {
-		currentSongIndex.value = (currentSongIndex.value - 1 + songList.value.length) % songList.value.length;
-		loadSong(songList.value[currentSongIndex.value].id);
-		audioContext.src = `https://example.com/music/${song.value.id}.mp3`;
-		audioContext.play();
+		// Load previous song logic
 	};
 
 	const seek = (event) => {
 		const value = event.detail.value;
-		audioContext.seek(value); // 跳转到指定时间
+		audioContext.seek(value);
 	};
 
 	const formatTime = (seconds) => {
@@ -156,19 +157,17 @@
 		return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
 	};
 
-	// 返回上一页
 	const goBack = () => {
-		router.back(); // 使用 Vue Router 返回上一页
+		router.back();
 	};
 </script>
 
-
-<style lang="scss">
+<style lang="scss" scoped>
 	.container {
 		position: relative;
 		height: 100vh;
 		overflow: hidden;
-		background-color: #f8f8f8;
+		background: linear-gradient(to bottom, #1c1c1c, #3a3a3a);
 	}
 
 	.background {
@@ -177,8 +176,8 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		filter: blur(15px);
-		z-index: 1;
+		filter: blur(20px);
+		opacity: 0.4;
 	}
 
 	.overlay {
@@ -189,52 +188,61 @@
 		align-items: center;
 		justify-content: center;
 		height: 100%;
-		background-color: rgba(255, 255, 255, 0.8);
+		background-color: rgba(0, 0, 0, 0.6);
 		padding: 20px;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		border-radius: 20px;
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 	}
 
 	.cover {
-		width: 300px;
-		height: 300px;
-		border-radius: 10px;
+		width: 280px;
+		height: 280px;
+		border-radius: 50%;
 		margin-bottom: 20px;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+		box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 	}
 
 	.song-info {
 		text-align: center;
-		color: #333;
+		color: #ffffff;
 	}
 
 	.song-title {
-		font-size: 26px;
+		font-size: 30px;
 		font-weight: bold;
+		margin-bottom: 10px;
 	}
 
 	.song-artist {
-		font-size: 20px;
-		color: #666;
+		font-size: 22px;
+		color: #dddddd;
 	}
 
 	.controls {
-		margin: 20px 0;
+		margin: 30px 0;
 		display: flex;
 		justify-content: center;
 	}
 
 	.control-button,
 	.play-button {
-		margin: 0 10px;
-		padding: 10px 20px;
+		width: 60px;
+		height: 60px;
 		border: none;
-		border-radius: 25px;
-		font-size: 16px;
-		color: white;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 20px;
+		color: #ffffff;
+		cursor: pointer;
+		transition: background-color 0.3s;
+
 	}
 
 	.control-button {
 		background-color: #3e3e3e;
+
 	}
 
 	.control-button:hover {
@@ -242,38 +250,43 @@
 	}
 
 	.play-button {
-		background-color: #1db954;
+		background-color: #e64340;
 	}
 
 	.play-button:hover {
-		background-color: #1aa34a;
+		background-color: #e64340;
 	}
 
 	.progress-bar {
-		width: 90%;
+		width: 80%;
 		display: flex;
 		align-items: center;
+		color: #ffffff;
 	}
 
 	.time {
-		color: #333;
+		font-size: 16px;
+		margin: 0 10px;
 	}
 
 	.lyrics {
 		margin-top: 20px;
-		color: #333;
+		color: #ffffff;
 		text-align: center;
+		max-height: 200px;
+		overflow-y: auto;
 	}
 
 	.lyric {
-		margin: 2px 0;
-		font-size: 16px;
+		margin: 4px 0;
+		font-size: 18px;
+		line-height: 24px;
 	}
 
 	.header {
 		position: absolute;
-		top: 10px;
-		left: 10px;
+		top: 20px;
+		left: 20px;
 		display: flex;
 		align-items: center;
 	}
@@ -282,11 +295,6 @@
 		background: none;
 		border: none;
 		cursor: pointer;
-
-	}
-
-	.back-icon {
-		width: 24px;
-		height: 24px;
+		color: #ffffff;
 	}
 </style>
