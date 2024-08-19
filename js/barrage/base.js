@@ -2,33 +2,52 @@
 //   this.name = name
 //   this.age = age
 // }
-// Person.prototype.say = function () {
+// Person.prototype.say = function() {
 //   console.log('hello');
 // }
-// let p = new Person('朴志晟', 22)
+// Person.eat = function() {
+//   console.log('I like food');
+// }
+// Person.prototype.sex = 'girl';
+// Person.prototype.addAge = function(){
+//   this.age++
+// };
 
-// console.log(p.say());
+// let p = new Person('曹总', 18)
+// p.addAge()
+// console.log(p);
+
+
+
+
+
+
+
+
 
 class Person {
+  #count = 1
+
   constructor(name, age) {
     this.name = name
     this.age = age
-
-
+    // this.count = 1
   }
-
-
-
 
   run() {
-    console.log('running');
+    console.log('running', this.#count);
   }
-
   static eat() {
     console.log('I like food');
   }
+  get sex() {
+    return 'girl'
+  }
+  set addAge(val) {
+    this.age = val
+  }
 }
-let p = new Person('崔杋圭', 23)
-// console.log(p);
-p.run()
-p.eat()// p.eat is not a function
+let p = new Person('笑笑', 18)
+// p.addAge = 20
+
+console.log(p.run());
