@@ -15,7 +15,7 @@
 							Love Story
 						</view>
 						<view>
-							测试歌曲
+							测试歌曲。。。
 						</view>
 					</view>
 				</view>
