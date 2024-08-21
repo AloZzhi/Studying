@@ -20,7 +20,7 @@ export function useResize(
 
     onMounted(() => {
         window.addEventListener('resize', handler)
-        immediate && handler() // 先执行一次
+        immediate && handler() // 先执行一次。。。
     })
 
     onUnmounted(() => {
