@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>详情页 -- <span id="title"></span></h3>
+    <script>
+      let title = document.getElementById("title");
+
+      window.onmessage = function (e) {
+        const {
+          data: { name, age },
+          origin,
+        } = e;
+
+        title.innerText = name + age;
+
+        e.source.postMessage(`本人现在${++age}岁`,origin)
+      };
+    </script>
+  </body>
+</html>

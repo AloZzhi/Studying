@@ -1,0 +1,1 @@
+nextTick 里面的promise状态需要等待内部回调中的getData()异步返回的promise状态变更完成后，才能变更

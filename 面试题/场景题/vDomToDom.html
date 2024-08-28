@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script>
+    const vnode = {
+      tag: 'div',
+      attrs: {
+        id: 'app',
+        className: 'box',
+        style: {width: '100px', height: '100px'}
+      },
+      children: [
+        {
+          tag: 'span',
+          children: [{
+            tag: 'a',
+            children: [],
+          }],
+        },
+        {
+          tag: 'span',
+          children: [{
+            tag: 'a',
+            children: [],
+          }]
+        }
+      ]
+    }
+
+    render(vnode, document.getElementById('root'))
+    function render(vnode, container) {
+      const newDom = createDom(vnode)
+      container.appendChild(newDom)
+    }
+
+    function createDom(vnode) {
+      const { tag, attrs, children } = vnode
+      const dom = document.createElement(tag)
+      if (typeof attrs === 'object' && attrs !== null) {
+        updateProps(dom, {}, attrs)  // 为dom添加属性
+      }
+      if (children.length > 0) {
+        reconcileChildren(children, dom)  //  为dom添加子容器
+      }
+      return dom
+    }
+
+    function updateProps(dom, oldProps = {}, newProps = {}) {
+      for (const key in newProps) {
+        if (key === 'style') {
+          let styleObj = newProps[key]
+          for (let attr in styleObj) {
+            dom.style[attr] = styleObj[attr]
+          }
+        } else { // id || class
+          dom[key] = newProps[key]
+        }
+      }
+    }
+  
+    function reconcileChildren(children, dom) {
+      for (let child of children) {
+        render(child, dom)
+      }
+    }
+  </script>
+</body>
+
+</html> 
+<!-- 
+递归
+为容器添加属性
+为容器添加子容器
+ -->

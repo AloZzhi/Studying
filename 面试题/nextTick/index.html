@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      h2 {
+        width: auto; /* 修正了 CSS 属性 */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h2 ref="h2Ref">{{message}}</h2>
+      <button @click="updateMessage">更新数据</button> <!-- 修正了按钮的点击事件 -->
+    </div>
+<script></script>
+    <script>
+      const { createApp, ref, onMounted, nextTick } = Vue;
+
+      createApp({
+        setup() {
+          const message = ref("Hello world");
+          const h2Ref = ref(null);
+
+          onMounted(() => {
+            console.log(h2Ref.value.clientWidth);
+          });
+
+          const updateMessage = () => { // 修正了函数名
+            message.value = "更新后的数据";
+
+            nextTick(() => {
+              console.log(h2Ref.value.clientWidth);
+            });
+          };
+
+          return {
+            message,
+            h2Ref,
+          };
+        },
+      }).mount('#app'); // 修正了挂载方式
+    </script>
+  </body>
+</html>
