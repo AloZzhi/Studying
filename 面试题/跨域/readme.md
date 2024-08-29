@@ -22,3 +22,6 @@
 
 5.postMessage
 当页面一通过iframe嵌套了页面二，这两个页面上已经无法进行通讯的，因为跨域了，但是使用postMessage可以进行跨域通讯
+
+6. document.domain
+  两个页面通过iframe进行嵌套，且两个页面的二级域名一致（这种情况下可以进行通讯）

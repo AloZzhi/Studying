@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2>首页</h2>
+  <iframe id="frame" src="http://127.0.0.1:5500/postMessage/detail.html" width="800" height="500" frameborder="0"></iframe>
+
+  <!-- <script>
+    let obj = {name: '剑哥', age: 18}
+
+    document.getElementById('frame').onload = function() {
+      this.contentWindow.postMessage(obj, 'http://127.0.0.1:8080')
+
+      window.onmessage = function(e) {
+        console.log(e.data);
+        
+      }
+    }
+    
+  </script> -->
+
+  <script>
+    document.domain = '127.0.0.1'
+    document.getElementById('frame').onload = function() {
+      console.log(this.contentWindow.data);
+    }
+
+
+    //     https://www.a.test.com/home
+    //     https://www.b.test.com/home
+
+    
+  </script>
+</body>
+</html>

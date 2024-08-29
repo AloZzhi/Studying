@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>www</h2>
+    <button onclick="showDOM()">获取页面2的cookie</button>
+    <br /><br />
+    <iframe id="framePage" src="https://www.bilibili.com/" width="900px" height="500px"></iframe>
+
+    <script type="text/javascript">
+      function showDOM() {
+        console.log(document.cookie);
+        
+      }
+    </script>
+  </body>
+</html>
