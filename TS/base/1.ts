@@ -1,13 +1,11 @@
-const STATUS_OK: 'OK' = 'OK';
-const STATUS_ERROR: 'ERROR' = 'ERROR';
-
-function checkStatus(status: 'OK' | 'ERROR') {
-  if (status === STATUS_OK) {
-    console.log('Everything is fine!');
+function reverse(str: string | number[]): string | number[] {
+  if (typeof str === 'string') {
+    return str.split('').reverse().join('')
   } else {
-    console.log('There was an error.');
+    return str.slice().reverse()
   }
+
 }
 
-checkStatus(STATUS_OK); // 允许
-checkStatus('OK'); // 允许
+reverse('abcdefg')
+reverse([1, 2, 3])
