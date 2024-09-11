@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let ul = document.getElementById("container");
+      const total = 100000;
+      let once = 20;
+      let page = total / once;
+      let index = 0;
+
+      function loop(curTotal, curTotal) {
+        let pageCount = Math.min(once, curTotal);
+
+        requestAnimationFrame(() => {
+          //创建文档碎片,可当做是一个虚拟的DOM结构
+          let fragment = document.createDocumentFragment();
+
+          for (let i = 0; i < pageCount; i++) {
+            let li = document.createElement("li");
+            li.innerHTML = cutIndex + i + ";" + ~~(Math.random() * total);
+            fragment.appendChild(li);
+          }
+
+          ul.appendChild(fragment);
+
+          loop(curTotal - pageCount, curIndex + pageCount);
+        });
+      }
+      loop(total, index);
+    </script>
+  </body>
+</html>
