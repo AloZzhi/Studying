@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>图片预加载</h2>
+
+  </div>
+  <script>
+    let ul = document.querySelector('ul')
+
+    //为image.js脚本代码开辟了一个新的线程
+    const worker = new Worker('./image.js')
+    //监听来自副线程的消息
+    worker.onmessage = function(event){
+      console.log(event);
+      
+    }
+
+  </script>
+</body>
+</html>
