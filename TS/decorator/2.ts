@@ -5,7 +5,7 @@ function simpleDecorator(value: any, context: any) {
 
 // @simpleDecorator
 class A {
-  #age = 18 //私有成员
+  age = 18 //私有成员变量
 
   @simpleDecorator
   static run() {
