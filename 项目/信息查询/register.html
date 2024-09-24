@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>注册页面</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>注册</h2>
+      <form action="">
+        <label for="email">Email/Phone Number/ID:</label>
+        <input type="text" id="email" name="email" required /><br /><br />
+
+        <label for="password">密码:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+        /><br /><br />
+
+        <label for="confirmPassword">确认密码:</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          required
+        /><br /><br />
+
+        <label for="firstName">姓:</label>
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          required
+        /><br /><br />
+
+        <label for="lastName">名:</label>
+        <input type="text" id="lastName" name="lastName" required /><br /><br />
+
+        <label for="institution">机构:</label>
+        <input
+          type="text"
+          id="institution"
+          name="institution"
+          required
+        /><br /><br />
+
+        <label for="country">国家/地区:</label>
+        <input type="text" id="country" name="country" required /><br /><br />
+        <el-form-item label="仓库地址" prop="addressJson">
+          <el-row>
+            <el-col :span="16">
+              <el-cascader
+                :options="addressData"
+                :disabled="false"
+                @change="handleAddress"
+                style="width: 95%"
+                v-model="addressSelections"
+                placeholder="请选择省市区"
+              ></el-cascader>
+            </el-col>
+            <el-col :span="8">
+              <el-input v-model="form.detail" placeholder="请填写详细地址" />
+            </el-col>
+          </el-row>
+        </el-form-item>
+        <input type="submit" value="注册" @click="toLogin" />
+      </form>
+    </div>
+
+    <script>
+      // 获取注册表单元素
+      const registerForm = document.getElementById("registerForm");
+
+      // 添加表单提交事件监听器
+      const toLogin = registerForm.addEventListener("submit", function (event) {
+        // 取消默认提交行为
+        event.preventDefault();
+
+        // 跳转到登录页面
+        window.location.href = "login.html";
+      });
+    </script>
+  </body>
+</html>
