@@ -8,5 +8,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "init": "^0.1.2",
+    "vue": "^3.5.8"
+  }
 }
