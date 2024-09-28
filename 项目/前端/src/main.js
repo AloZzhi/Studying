@@ -6,7 +6,6 @@ import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';  
 import zhCn from 'element-plus/es/locale/lang/zh-cn';  
 import "@yll10243/vue3-carousel/dist/style.css"
-import carousel from "@yll10243/vue3-carousel"
 
 const app = createApp(App);  
 
@@ -22,6 +21,3 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 // 使用路由并挂载应用  
 app.use(router).mount('#app');
-
-//轮播图组件
-app.use(carousel)

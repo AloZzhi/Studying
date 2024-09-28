@@ -34,7 +34,6 @@
 				</el-col>
 			</el-form-item>
 
-
 			<!-- 注册后才能勾选 -->
 			<el-form-item label="是否为演讲者" prop="isSpeaker">
 				<el-switch v-model="ruleForm.isSpeaker"></el-switch>
