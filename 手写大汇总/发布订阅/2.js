@@ -57,7 +57,7 @@ pubsub.subscribe('click2', () => {
 //   console.log('once')
 // })
 
-pubsub.publish('click1', '刘子曦')
+pubsub.publish('click1', 'offer')
 
 
 

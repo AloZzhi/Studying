@@ -10,9 +10,9 @@ function throttle(fn, delay) {
 
 const throttled = throttle(() => {
   console.log('throttled')
-}, 100)
+}, 1000)
 for(let i = 0; i < 10; i++) {
   setTimeout(() => {
     throttled()
-  }, 100 * i)
+  }, 500 * i)
 }

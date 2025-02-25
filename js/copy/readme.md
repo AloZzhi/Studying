@@ -15,11 +15,12 @@ const：也是在ES6中引入的关键字，用于声明常量。与let类似，
 
 
 # 浅拷贝
+拷贝地址
 基于原对象拷贝得到一个新的对象，原对象中内容的修改会影响新对象
 
 - 常见的浅拷贝方法：
-1. Object.create(x)
-2. Object.assign({},a)
+1. Object.create(x) 
+2. Object.assign({},a) 拼接
 3. [].concat(x)
 4. 数组解构
 5. arr.slice(0)
@@ -31,6 +32,7 @@ const：也是在ES6中引入的关键字，用于声明常量。与let类似，
 
 
 # 深拷贝
+拷贝属性值
 基于原对象拷贝得到一个新的对象，原对象中内容的修改不会影响新对象
 
 - JSON.parse(JSON.stringify(obj))
@@ -39,6 +41,10 @@ const：也是在ES6中引入的关键字，用于声明常量。与let类似，
 3. 不能处理循环引用
 
 - structuredClone():
+
+- 递归拷贝
+
+- new MessageChannel()
 
 
 - 实现原理

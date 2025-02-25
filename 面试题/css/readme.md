@@ -110,3 +110,4 @@ css3之前的 px,em,%    css3 创建了新的单位 rem，vw， vh，
 
 
 # 11. 画一条0.5px的线
+transform: scaleY(0.5);

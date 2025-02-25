@@ -1,6 +1,6 @@
-function debounce (fn, delay) {
+function debounce(fn, delay) {
   let timer
-  return function() {
+  return function () {
     if (timer) clearTimeout(timer)
     timer = setTimeout(() => {
       fn.apply(this, arguments)
@@ -11,8 +11,17 @@ function debounce (fn, delay) {
 function log() {
   console.log('debounce')
 }
-
 const debounceLog = debounce(log, 500)
 for (let i = 0; i < 10; i++) {
   setTimeout(debounceLog, i * 1000)
+}
+
+function debounce(fn, delay) {
+  let timer
+  if (timer) {
+    clearTimeout(timer)
+  }
+  timer = setTimeout(() => {
+    fn.apply(this, arguments)
+  }, delay)
 }
