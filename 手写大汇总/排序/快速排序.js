@@ -1,19 +1,24 @@
-arr = [8, 43, 2, 354, 32, 5,5]
 function quickSort(arr) {
-  if(arr.length<=1) return arr
-  let piovtIndex = Math.floor(arr.length/2)
-  let piovt = arr.splice(piovtIndex,1)[0]
-  let right=[],left=[],equal=[]
-  for(let i=0;i<arr.length;i++){
-    if(arr[i]>piovt){
-      right.push(arr[i])
-    }else if(arr[i]>arr.length){
+  if (arr.length <= 1) return arr
+  const pivotIndex = Math.floor(Math.random() * arr.length)
+  const pivot = arr[pivotIndex]
+
+  const left = []
+  const right = []
+
+  for (let i = 0; i < arr.length; i++) {
+    if (i === pivotIndex) continue
+    if (arr[i] < pivot) {
       left.push(arr[i])
-    }else{
-      equal.push(arr[i])
+    } else {
+      right.push(arr[i])
     }
   }
-  return [...quickSort(left),piovt,...equal,...quickSort(right)]
+  return [...quickSort(left), pivot, ...quickSort(right)]
 }
-console.log(quickSort(arr));
 
+console.log(quickSort([8, 43, 2, 354, 32, 5, 5, 5, 5, 5, 5]));
+
+
+
+//1.忘了arr.length<=1的情况

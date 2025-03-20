@@ -30,4 +30,4 @@ ToObject(a)
 xxx.toString
 
 
-#Array.isArray(x)//只能判断数组
+#  Array.isArray(x)//只能判断数组
